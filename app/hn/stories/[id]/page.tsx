@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Comment } from "./comment";
 
-const StoryPage = async ({ params: { id } }) => {
+const StoryPage = async ({ params: { id } }:{ params:{ id: number } }) => {
   const res = await fetch(
     `https://hacker-news.firebaseio.com/v0/item/${id}.json`
   );
