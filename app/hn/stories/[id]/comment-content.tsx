@@ -14,8 +14,8 @@ export const CommentContent = ({
 }) => {
   const [open, setOpen] = useState(true);
   return (
-    <div className={!isParent ? "border-l pl-3" : ""}>
-      <div className="text-sm text-gray-10 ">
+    <div className={!isParent ? "border-l pl-2 sm:pl-3" : ""}>
+      <div className="text-xs text-gray-10 ">
         <span>
           {comment.by} {convertTime(comment.time)} ago
         </span>
@@ -29,16 +29,16 @@ export const CommentContent = ({
         </button>
       </div>
 
-      <div className="mb-2">
+      <div className="mb-2 mt-1">
         {open && (
           <>
             <div
-              className=" prose-sm max-w-none last:prose-p:mb-0 text-black"
+              className=" prose prose-sm  max-w-none last:prose-p:mb-0 text-black"
               dangerouslySetInnerHTML={{ __html: comment.text }}
             ></div>
             <button className="text-xs text-gray-10">save</button>
 
-            <div className="space-y-2 pl-3">
+            <div className="space-y-2 pl-2 mt-2 sm:pl-3">
               {comment.kids && <>{children}</>}
             </div>
           </>

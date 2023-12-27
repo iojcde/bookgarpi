@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { CommentContent } from "./comment-content";
 
 export const Comment = async ({
@@ -18,9 +19,11 @@ export const Comment = async ({
 
   return (
     <CommentContent isParent={isParent} comment={comment}>
-      {comment.kids?.map((id: number) => (
-        <Comment isParent={false} id={id} key={id} />
-      ))}
+      <Suspense>
+        {comment.kids?.map((id: number) => (
+          <Comment isParent={false} id={id} key={id} />
+        ))}
+      </Suspense>
     </CommentContent>
   );
 };
