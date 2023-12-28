@@ -1,12 +1,19 @@
-import { debounce } from "lodash";
-import { getFavicon } from "./actions/get-favicon";
 import { Bookmarker } from "./bookmarker";
 import { Bookmark } from "./bookmark";
 import Link from "next/link";
+import { db } from "@/lib/db";
+import { getSession } from "next-auth/react";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+  const garpis = await db.garpi.findMany({
+    where: {
+      userId: session?.user.id,
+    },
+  });
+
   return (
-    <main className="min-h-screen py-24 container">
+    <main className="min-h-screen py-24 max-w-3xl container">
       <h1 className="text-3xl font-bold">Bookgarpi</h1>
       <div className="flex items-center justify-between">
         <span className="inline-block mt-2">나만의 책갈피 정리하기</span>
@@ -15,17 +22,7 @@ export default function Home() {
         </Link>
       </div>
 
-      <Bookmarker />
-      <hr className="my-2" />
-
-      <div className="space-y-2">
-        <Bookmark
-          url="https://github.com"
-          title="Github"
-          desc="wow it's github"
-          img="https://github.com/favicon.ico"
-        />
-      </div>
+      <Bookmarker initialgarpis={garpis} />
     </main>
   );
 }

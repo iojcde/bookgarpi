@@ -21,7 +21,7 @@ export const Story = async ({
       <div>
         <a
           href={story.url || `/hn/stories/${story.id}`}
-          className="font-semibold"
+          className="font-medium"
         >
           {story.title}
           {` `}

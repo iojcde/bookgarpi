@@ -31,7 +31,7 @@ export const Bookmark = ({
 
     <div className="flex flex-col ml-2">
       <div className="text-lg font-bold">{title}</div> <div>{url}</div>
-      <div className="text-gray-11 text-sm">{desc}div</div>
+      <div className="text-gray-11 text-sm">{desc}</div>
     </div>
   </div>
 );
