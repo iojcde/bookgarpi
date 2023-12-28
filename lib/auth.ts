@@ -29,9 +29,9 @@ export const authOptions: NextAuthOptions = {
 
       if (!dbUser) {
         if (user) {
-          token.id = parseInt(user?.id)
+          token.id = user?.id;
         }
-        return token
+        return token;
       }
 
       return {
