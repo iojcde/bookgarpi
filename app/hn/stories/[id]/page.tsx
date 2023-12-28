@@ -51,7 +51,7 @@ export async function generateStaticParams() {
   ).then((res) => res.json());
   
   return stories.map((id: number) => ({
-    id
+    id: id.toString()
   }))
 }
  
