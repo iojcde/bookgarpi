@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
       });
 
       if (!dbUser) {
-        return nul
+        return null
       }
 
       return {
