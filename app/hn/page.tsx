@@ -2,7 +2,8 @@ import { Story } from "./story";
 
 const HackerNews = async () => {
   const stories = await fetch(
-    "https://hacker-news.firebaseio.com/v0/topstories.json"
+    "https://hacker-news.firebaseio.com/v0/topstories.json",
+     { next: { revalidate: 60 } }
   ).then((res) => res.json());
 
   return (
