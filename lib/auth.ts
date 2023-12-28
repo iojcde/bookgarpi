@@ -27,11 +27,15 @@ export const authOptions: NextAuthOptions = {
         },
       });
 
+      if (!dbUser) {
+        return nul
+      }
+
       return {
-        id: dbUser?.id,
-        name: dbUser?.name,
-        email: dbUser?.email,
-        picture: dbUser?.image,
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        picture: dbUser.image,
       };
     },
     async session({ token, session }) {
