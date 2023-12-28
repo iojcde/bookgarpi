@@ -50,7 +50,7 @@ export async function generateStaticParams() {
      { next: { revalidate: 3600 } }
   ).then((res) => res.json());
   
-  return stories.map((id) => ({
+  return stories.map((id: number) => ({
     id
   }))
 }
