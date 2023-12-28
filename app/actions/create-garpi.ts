@@ -7,6 +7,10 @@ import { getMetadata } from "./get-metadata";
 export const createGarpi = async (url: string) => {
   const session = await getSession();
 
+  if (!session) {
+    return null
+  }
+  
   try {
     new URL(url as string);
   } catch (e) {
