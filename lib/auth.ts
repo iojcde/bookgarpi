@@ -28,7 +28,10 @@ export const authOptions: NextAuthOptions = {
       });
 
       if (!dbUser) {
-        return null
+        if (user) {
+          token.id = user?.id
+        }
+        return token
       }
 
       return {
