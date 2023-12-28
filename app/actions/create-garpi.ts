@@ -16,7 +16,7 @@ export const createGarpi = async (url: string) => {
 
   return await db.garpi.create({
     data: {
-      user: session?.user.id,
+      userId: session?.user.id,
       url,
       title: metadata.title || url,
       desc: metadata.desc,
