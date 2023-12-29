@@ -4,18 +4,25 @@ import Link from "next/link";
 import { db } from "@/lib/db";
 import { getSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
+import { Garpi } from "@prisma/client";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export default async function Home() {
   const session = await getServerSession();
 
-  const garpis = await db.garpi.findMany({
-    where: {
-      userId: session?.user.id,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  let garpis: Garpi[];
+  if (!session) {
+    garpis = [];
+  } else {
+    garpis = await db.garpi.findMany({
+      where: {
+        userId: session?.user.id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  }
 
   return (
     <main className="min-h-screen py-24 max-w-2xl container">
@@ -27,7 +34,16 @@ export default async function Home() {
         </Link>
       </div>
 
-      <Bookmarker initialgarpis={garpis} />
+      {session ? (
+        <Bookmarker initialgarpis={garpis} />
+      ) : (
+        <div>
+          로그인이 필요합니다.
+          <Link href={"/login"} className={buttonVariants()}>
+            로그인
+          </Link>
+        </div>
+      )}
     </main>
   );
 }
