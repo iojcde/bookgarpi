@@ -52,7 +52,7 @@ export async function generateStaticParams() {
     { next: { revalidate: 3600 } }
   ).then((res) => res.json());
 
-  return stories.map((id: number) => ({
+  return stories.slice(0, 30).map((id: number) => ({
     id: id.toString(),
   }));
 }
