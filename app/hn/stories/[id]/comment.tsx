@@ -19,11 +19,9 @@ export const Comment = async ({
 
   return (
     <CommentContent isParent={isParent} comment={comment}>
-      <Suspense>
-        {comment.kids?.map((id: number) => (
-          <Comment isParent={false} id={id} key={id} />
-        ))}
-      </Suspense>
+      {comment.kids?.map((id: number) => (
+        <Comment isParent={false} id={id} key={id} />
+      ))}
     </CommentContent>
   );
 };

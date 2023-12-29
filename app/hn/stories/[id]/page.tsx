@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Comment } from "./comment";
+import { Suspense } from "react";
 
 const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
   const res = await fetch(
@@ -15,6 +16,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
     <div className="rounded-md mt-4 py-1 border-gray-3">
       <div>
         <a
+          target="_blank"
           href={story.url || `/hn/stories/${story.id}`}
           className="font-semibold"
         >
@@ -45,19 +47,14 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
 };
 
 export async function generateStaticParams() {
-   const stories = await fetch(
+  const stories = await fetch(
     "https://hacker-news.firebaseio.com/v0/topstories.json",
-     { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } }
   ).then((res) => res.json());
-  
+
   return stories.map((id: number) => ({
-    id: id.toString()
-  }))
+    id: id.toString(),
+  }));
 }
- 
-
-
 
 export default StoryPage;
-
-

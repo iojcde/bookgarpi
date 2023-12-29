@@ -72,6 +72,8 @@ model Garpi {
   url        String
   desc       String?
 
+  createdAt DateTime @default(now())
+
   origin String
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -20,6 +20,7 @@ export const Story = async ({
     <li className="rounded-md py-1 border-gray-3">
       <div>
         <a
+          target="_blank"
           href={story.url || `/hn/stories/${story.id}`}
           className="font-medium"
         >
