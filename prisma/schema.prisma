@@ -64,10 +64,10 @@ model User {
 }
 
 model Garpi {
-  id Int @id @default(autoincrement())
+  id String @id @default(cuid())
 
   title      String
-  favicon    String?
+  image      String?
   customName String?
   url        String
   desc       String?
@@ -76,6 +76,12 @@ model Garpi {
 
   origin String
 
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId  String
+  content String?
+  //todo: set max length
+
+  author String?
+
+  type String
 }

@@ -1,42 +1,60 @@
-"use server";
 import { JSDOM } from "jsdom";
 
-export const getMetadata = async (url: string) => {
-  let data: { favicon?: string; title?: string; desc?: string } = {};
-  const html = await fetch(url);
+export async function getMetadata(url: string) {
+  const response = await fetch(url);
+  const html = await response.text();
+  const dom = new JSDOM(html);
+  const metaTags = dom.window.document.getElementsByTagName("meta");
+  const images = dom.window.document.getElementsByTagName("img");
 
-  const dom = new JSDOM(await html.text());
+  let ogImage,
+    ogTitle,
+    ogDescription,
+    twitterImage,
+    twitterTitle,
+    twitterDescription;
 
-  const document = dom.window.document;
-  const faviconEl = document.querySelector("link[rel=icon]") as HTMLLinkElement;
-  if (faviconEl) {
-    if (faviconEl.href.startsWith("/")) {
-      data.favicon = new URL(faviconEl.href, url).toString();
-    } else {
-      data.favicon = faviconEl.href;
+  for (let i = 0; i < metaTags.length; i++) {
+    if (
+      metaTags[i].getAttribute("name") === "og:image" ||
+      metaTags[i].getAttribute("property") === "og:image"
+    ) {
+      ogImage = metaTags[i].getAttribute("content");
     }
-  } else {
-    const favicon = await fetch(new URL("/favicon.ico", url).toString());
-    if (favicon.ok) {
-      if (favicon.url.startsWith("/")) {
-        data.favicon = new URL(favicon.url, url).toString();
-      } else {
-        data.favicon = favicon.url;
-      }
+    if (
+      metaTags[i].getAttribute("name") === "og:title" ||
+      metaTags[i].getAttribute("property") === "og:title"
+    ) {
+      ogTitle = metaTags[i].getAttribute("content");
+    }
+    if (
+      metaTags[i].getAttribute("name") === "og:description" ||
+      metaTags[i].getAttribute("property") === "og:description"
+    ) {
+      ogDescription = metaTags[i].getAttribute("content");
+    }
+    if (metaTags[i].getAttribute("name") === "twitter:image") {
+      twitterImage = metaTags[i].getAttribute("content");
+    }
+    if (metaTags[i].getAttribute("name") === "twitter:title") {
+      twitterTitle = metaTags[i].getAttribute("content");
+    }
+    if (metaTags[i].getAttribute("name") === "twitter:description") {
+      twitterDescription = metaTags[i].getAttribute("content");
     }
   }
 
-  const title = document.querySelector("title");
-  if (title && title.textContent) {
-    data.title = title.textContent;
-  } else {
-    const metaTitle = document.querySelector('meta[name="title"]');
-    data.title = metaTitle?.getAttribute("content") ?? undefined;
+  let firstImage = images.length > 0 ? images[0].getAttribute("src") : null;
+
+  if (firstImage && firstImage.startsWith("/")) {
+    firstImage = new URL(firstImage, url).toString();
   }
 
-  const metaDescription = document.querySelector('meta[name="description"]');
+  console.log(ogTitle, twitterTitle);
 
-  data.desc = metaDescription?.getAttribute("content") ?? undefined;
-
-  return data;
-};
+  return {
+    image: twitterImage ?? ogImage ?? firstImage,
+    title: twitterTitle ?? ogTitle,
+    description: twitterDescription ?? ogDescription,
+  };
+}

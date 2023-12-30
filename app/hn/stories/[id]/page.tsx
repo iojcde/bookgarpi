@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Comment } from "./comment";
 import { Suspense } from "react";
+import { SaveButton } from "./save-button";
 
 const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
   const res = await fetch(
@@ -32,8 +33,16 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
         <span>
           {story.score} points by {story.by}
         </span>
-        ·<Link href={`/hn/stories/${id}`}>{story.descendants} comments</Link>
+        ·<Link href={`/hn/stories/${id}`}>{story.descendants} comments</Link>·
+        <SaveButton url={`https://bookgarpi.vercel.app/hn/stories/${id}`} />
       </div>
+
+      {story.text && (
+        <div
+          className="my-4 prose-sm prose"
+          dangerouslySetInnerHTML={{ __html: story.text }}
+        />
+      )}
 
       <hr className="my-2" />
 
@@ -58,3 +67,23 @@ export async function generateStaticParams() {
 }
 
 export default StoryPage;
+
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: number };
+}) {
+  const res = await fetch(
+    `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+  );
+
+  if (!res.ok) {
+    return null;
+  }
+  const story = await res.json();
+
+  return {
+    title: `${story.title} | Bookgarpi HN`,
+    description: story.text,
+  };
+}

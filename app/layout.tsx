@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localfont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 import { Nav } from "./components/nav";
 
 const wanted = localfont({
@@ -25,7 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={wanted.className}>{children}</body>
+      <body className={wanted.className}>
+        {children} <Toaster />
+      </body>
     </html>
   );
 }

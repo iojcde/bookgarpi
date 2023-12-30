@@ -6,10 +6,12 @@ import { useState } from "react";
 import { db } from "@/lib/db";
 import { createGarpi } from "./actions/create-garpi";
 import { Bookmark } from "./garpi";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
-  const [favicon, setFavicon] = useState<string | null>(null);
-  const [garpis, setGarpis] = useState<any[]>(initialgarpis);
+  const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
 
   return (
     <>
@@ -23,22 +25,18 @@ export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
             newURL = "https://" + original;
           }
 
-          const newgarpi = await createGarpi(newURL);
-
-          if (!newgarpi) {
-            alert("Invalid URL");
-            return;
-          }
-          setGarpis([
-            {
-              id: newgarpi?.id,
-              url: newgarpi?.url,
-              title: newgarpi?.title,
-              favicon: newgarpi?.favicon,
-              desc: newgarpi?.desc,
+          toast.promise(createGarpi(newURL, "url"), {
+            loading: "Saving...",
+            success: (data) => {
+              setInputValue("");
+              return `Created new Garpi: ${data?.title}`;
             },
-            ...garpis,
-          ]);
+            error: (err) => {
+              return `Error: ${err.message}`;
+            },
+          });
+
+          router.refresh();
         }}
         className="flex mt-8 -mx-2 rounded-xl shadow-inner border border-gray-5 ring-offset-2 py-2 ring-gray-6 ring-offset-gray-1 px-3 items-center gap-3 bg-gray-2"
       >
@@ -60,6 +58,10 @@ export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
         </div>
 
         <input
+          value={inputValue}
+          onChange={(e) => {
+            setInputValue(e.target.value);
+          }}
           name="url"
           className="w-full bg-gray-2 outline-none sm:text-lg"
         ></input>
@@ -70,18 +72,6 @@ export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
       </form>
 
       <hr className="my-3" />
-
-      <div className="space-y-2">
-        {garpis.map((garpi) => (
-          <Bookmark
-            key={garpi.id}
-            title={garpi.title}
-            url={garpi.url}
-            img={garpi.favicon}
-            desc={garpi.desc}
-          />
-        ))}
-      </div>
     </>
   );
 };

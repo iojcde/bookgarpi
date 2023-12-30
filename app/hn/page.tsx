@@ -1,9 +1,10 @@
+import { Metadata } from "next";
 import { Story } from "./story";
 
 const HackerNews = async () => {
   const stories = await fetch(
     "https://hacker-news.firebaseio.com/v0/topstories.json",
-     { next: { revalidate: 60 } }
+    { next: { revalidate: 60 } }
   ).then((res) => res.json());
 
   return (
@@ -16,3 +17,8 @@ const HackerNews = async () => {
 };
 
 export default HackerNews;
+
+export const metadata: Metadata = {
+  title: "Bookgarpi - Hacker News",
+  description: "Another Hacker News reader",
+};

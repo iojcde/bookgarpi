@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 :root{
-  @apply bg-gray-1 text-gray-12;
+  @apply bg-gray-1 text-gray-12 ;
   scrollbar-gutter: stable;
+  
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+
+  --radius: 0.5rem;
+
 }
 
 *{
@@ -14,4 +18,9 @@
 
 .font-display {
   font-feature-settings: "opsz" 32;
+}
+
+
+.prose pre code {
+  @apply text-gray-1;
 }
