@@ -3,9 +3,10 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
 import { db } from "@/lib/db";
+import { PrismaClient } from "@prisma/client";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db) as any,
+  adapter: PrismaAdapter(db  as unknown as PrismaClient),
   session: {
     strategy: "jwt",
   },
