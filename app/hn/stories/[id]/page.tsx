@@ -46,7 +46,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
 
       <hr className="my-2" />
 
-      <div className="space-y-1 mt-8">
+      <div className="space-y-1 overflow-x-hidden mt-8">
         {story.kids?.map((id: number) => (
           <Comment isParent={true} id={id} key={id} />
         ))}
