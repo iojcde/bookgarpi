@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={wanted.className}>
-        {children} <Toaster />
+        <div>{children}</div> <Toaster />
       </body>
     </html>
   );

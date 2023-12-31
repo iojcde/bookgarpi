@@ -21,9 +21,12 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
         </div>
       )}
       <div className="p-4  transition">
-        <h3 className="text-lg font-bold leading-none pb-0.5 line-clamp-2 max-w-full">
+        <Link
+          href={`/garpi/${garpi.id}`}
+          className="text-lg font-bold leading-none pb-0.5 line-clamp-2 max-w-full"
+        >
           {garpi.title}
-        </h3>{" "}
+        </Link>{" "}
         <div className="text-gray-11 mt-2 text-xs line-clamp-4">
           {garpi.desc || "No description found..."}
         </div>
