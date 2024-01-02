@@ -28,7 +28,8 @@ export const createGarpi = async (url: string, type: string) => {
       const metadata = await getMetadata(url);
       const article = await extractArticle(url);
 
-      let summarized: string;
+      let summarized: string='';
+
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(
@@ -66,7 +67,7 @@ export const createGarpi = async (url: string, type: string) => {
       const metadata = await getMetadata(story.url);
       const article = await extractArticle(story.url);
 
-      let summarized: string;
+      let summarized: string='';
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(

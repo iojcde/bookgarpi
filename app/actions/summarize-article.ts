@@ -11,7 +11,7 @@ export const summarizeArticle = async (body: string) => {
   const session = await getServerSession();
 
   if (!session) {
-    return new Error("No session found");
+    return 'Failed to crate a create a description';
   }
 
   const regexForStripHTML = /(<([^>]+)>)/gi;

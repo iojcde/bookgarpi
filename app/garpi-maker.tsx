@@ -29,7 +29,7 @@ export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
 
           toast.promise(createGarpi(newURL, "url"), {
             loading: "Saving...",
-            success: (data) => {
+            success: (data: any) => {
               setInputValue("");
               return `Created new Garpi: ${data?.title}`;
             },
