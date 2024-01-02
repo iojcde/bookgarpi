@@ -33,7 +33,7 @@ export const CommentContent = ({
         {open && (
           <>
             <div
-              className=" prose prose-sm text-ellipsis max-w-none last:prose-p:mb-0 text-black"
+              className=" dark:prose-invert prose prose-sm text-ellipsis max-w-none last:prose-p:mb-0 prose-gray"
               dangerouslySetInnerHTML={{ __html: comment.text }}
             ></div>
             <button className="text-xs text-gray-10">save</button>

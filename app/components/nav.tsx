@@ -9,7 +9,7 @@ export const Nav = ({
 }) => (
   <nav className="container py-2 border-b">
     <Link href="/" className="font-bold text-lg">
-      Bookgarpi{" "}
+      Garpi{" "}
     </Link>{" "}
     {subpage && subpageHref && (
       <Link href={subpageHref} className="font-medium text-gray-10">

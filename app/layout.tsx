@@ -3,6 +3,7 @@ import localfont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Nav } from "./components/nav";
+import { cn } from "@/lib/utils";
 
 const wanted = localfont({
   src: [
@@ -26,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={wanted.className}>
+      <body className={cn(wanted.className)}>
         <div>{children}</div> <Toaster />
       </body>
     </html>

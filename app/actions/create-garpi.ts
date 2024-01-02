@@ -8,17 +8,17 @@ import { authOptions } from "@/lib/auth";
 import { extract } from "@extractus/article-extractor";
 import { extractArticle } from "./extract-article";
 import { revalidatePath } from "next/cache";
+import { summarizeArticle } from "./summarize-article";
 
 export const createGarpi = async (url: string, type: string) => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    console.error("No session found");
-    return null;
+    return new Error("No session found");
   }
 
   switch (type) {
-    case "url":
+    case "url": {
       try {
         new URL(url as string);
       } catch (e) {
@@ -27,47 +27,68 @@ export const createGarpi = async (url: string, type: string) => {
 
       const metadata = await getMetadata(url);
       const article = await extractArticle(url);
-      console.log(metadata)
+
+      let summarized: string;
+      if (!metadata.description) {
+        try {
+          summarized = await summarizeArticle(
+            article?.content ?? (await fetch(url).then((res) => res.text()))
+          );
+        } catch (e) {
+          console.error(e);
+        }
+      }
 
       return await db.garpi.create({
         data: {
           userId: session?.user.id,
           url,
           title: metadata.title || url,
-          origin: "Created from Bookgarpi web UI",
           image: metadata.image,
-          desc: metadata.description,
+          desc: metadata.description ?? summarized,
           content: article?.content,
           author: article?.author,
           type,
         },
       });
-
-    case "hn":
-      const hnId = url.split("/").pop();
-
-      if (!hnId) {
-        return null;
-      }
+    }
+    case "hn": {
+      const id = url.split("/").pop();
 
       const story = await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${hnId}.json`
+        `https://hacker-news.firebaseio.com/v0/item/${id}.json`
       ).then((res) => res.json());
 
       if (!story) {
-        return null;
+        return new Error("No such HN story found");
       }
 
-      revalidatePath(`/`);
+      const metadata = await getMetadata(story.url);
+      const article = await extractArticle(story.url);
+
+      let summarized: string;
+      if (!metadata.description) {
+        try {
+          summarized = await summarizeArticle(
+            article?.content ?? (await fetch(url).then((res) => res.text()))
+          );
+        } catch (e) {
+          console.error(e);
+        }
+      }
 
       return await db.garpi.create({
         data: {
           userId: session?.user.id,
-          url: `https://garpi.vercel.app/hn/stories/${hnId}`,
+          url: story.url,
           title: story.title,
-          origin: "Created from Bookgarpi web UI",
+          image: metadata.image,
+          desc: metadata.description ?? summarized,
+          content: article?.content,
+          hnId: story.id,
           type,
         },
       });
+    }
   }
 };

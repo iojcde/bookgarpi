@@ -26,16 +26,25 @@ import { toast } from "sonner";
 import { deleteGarpi } from "./actions/delete-garpi";
 import { cn } from "@/lib/utils";
 
-export const GarpiActions = ({ id }: { id: string }) => {
+export const GarpiActions = ({
+  id,
+  open,
+  setOpen,
+}: {
+  id: string;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) => {
   return (
     <AlertDialog>
-      <DropdownMenu modal={false}>
+      <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
         <DropdownMenuTrigger
           className={cn(
-            "absolute bottom-3 right-2 group-hover:opacity-100 opacity-0 transition-opacity", 
+            "absolute bottom-3 right-2 p-1 group-hover:opacity-100  opacity-0 transition-opacity",
+            open && "opacity-100"
           )}
         >
-          <MoreVertical size={16} />
+          <MoreVertical className="text-gray-11" size={16} />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>

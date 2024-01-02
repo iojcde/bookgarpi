@@ -3,6 +3,10 @@ import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HNGarpi } from "./hn-garpi";
+import { ChevronLeft } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getServerSession();
@@ -11,7 +15,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
     return null;
   }
 
-  const garpi = await db.garpi.findUnique({
+  const garpi = await db.garpi.findFirst({
     where: { id, userId: session.user.id },
   });
 
@@ -20,26 +24,36 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="container py-20 max-w-prose">
-      <h2>Garpi {id}</h2>
+    <div className="container py-20 max-w-[80ch]">
+      <Link
+        href="/"
+        className={cn(
+          "flex items-center -ml-8",
+          buttonVariants({ variant: "ghost" })
+        )}
+      >
+        <ChevronLeft className="text-gray-11" size={20} /> Home
+      </Link>
+      <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
+        {garpi.title}
+      </h1>
+      <hr className="my-3" />
+      <div className="flex items-center justify-between">
+        {garpi.author}
 
-      <h1 className="text-4xl font-bold mt-4">{garpi.title}</h1>
-
-      <div className="mt-2 text-gray-11">
-        {garpi.desc || "No description found..."}
+        <Link href={garpi.url} className="text-gray-11">
+          Open
+        </Link>
       </div>
 
-      <Link
-        href={garpi.url}
-        className="text-gray-11 text-xs flex items-center mt-2"
-      >
-        Open
-      </Link>
-      <code>{JSON.stringify(garpi, null, 2)}</code>
       <div
-        className="prose mt-8 "
+        className="prose dark:prose-invert lg:prose-lg mt-16 max-w-[80ch]"
         dangerouslySetInnerHTML={{ __html: garpi.content || "" }}
       ></div>
+
+      {garpi.type === "hn" ? (
+        <>{<HNGarpi id={garpi.url.split("/").pop() || ""} />}</>
+      ) : null}
     </div>
   );
 };

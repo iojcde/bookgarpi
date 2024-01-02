@@ -14,6 +14,9 @@ export async function getMetadata(url: string) {
     twitterTitle,
     twitterDescription;
 
+  const title =
+    dom.window.document.getElementsByTagName("title")[0]?.textContent;
+
   for (let i = 0; i < metaTags.length; i++) {
     if (
       metaTags[i].getAttribute("name") === "og:image" ||
@@ -50,11 +53,9 @@ export async function getMetadata(url: string) {
     firstImage = new URL(firstImage, url).toString();
   }
 
-  console.log(ogTitle, twitterTitle);
-
   return {
     image: twitterImage ?? ogImage ?? firstImage,
-    title: twitterTitle ?? ogTitle,
+    title: title ?? twitterTitle ?? ogTitle,
     description: twitterDescription ?? ogDescription,
   };
 }

@@ -37,14 +37,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen py-24 mx-6">
-      <h1 className="text-3xl font-bold">Garpi</h1>
-      <div className="flex items-center justify-between">
-        <span className="inline-block mt-2">나만의 책갈피 정리하기</span>
-        <Link href="/hn" className="font-medium">
-          HN Reader↗
-        </Link>
-      </div>
+    <main className="min-h-screen px-6 mt-16 bg-gray-1 max-w-[90rem] mx-auto">
       <Suspense>
         {session ? (
           <Bookmarker initialgarpis={garpis} />
@@ -57,8 +50,11 @@ export default async function Home() {
           </div>
         )}
       </Suspense>
-
-      <div className=" grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="py-4 flex gap-2 px-6 items-center font-medium">
+        <Link href="">Bookmarks</Link>
+      </div>
+      <hr/>
+      <div className=" mt-8 grid sm:grid-cols-2 mb-16 lg:grid-cols-4 gap-6">
         {garpis.map((garpi) => (
           <Bookmark garpi={garpi} key={garpi.id} />
         ))}
