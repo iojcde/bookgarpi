@@ -51,9 +51,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
         dangerouslySetInnerHTML={{ __html: garpi.content || "" }}
       ></div>
 
-      {garpi.type === "hn" ? (
-        <>{<HNGarpi id={garpi.url.split("/").pop() || ""} />}</>
-      ) : null}
+      {garpi.type === "hn" ? <>{<HNGarpi id={garpi.hnId as number} />}</> : null}
     </div>
   );
 };

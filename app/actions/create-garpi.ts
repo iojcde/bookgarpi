@@ -17,6 +17,10 @@ export const createGarpi = async (url: string, type: string) => {
     return new Error("No session found");
   }
 
+  if (session.user.email !== "io@jcde.xyz") {
+    return new Error("Not authorized");
+  }
+
   switch (type) {
     case "url": {
       try {
@@ -28,7 +32,7 @@ export const createGarpi = async (url: string, type: string) => {
       const metadata = await getMetadata(url);
       const article = await extractArticle(url);
 
-      let summarized: string='';
+      let summarized: string = "";
 
       if (!metadata.description) {
         try {
@@ -67,7 +71,7 @@ export const createGarpi = async (url: string, type: string) => {
       const metadata = await getMetadata(story.url);
       const article = await extractArticle(story.url);
 
-      let summarized: string='';
+      let summarized: string = "";
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(

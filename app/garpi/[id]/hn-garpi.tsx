@@ -1,6 +1,6 @@
 import { Comment } from "@/app/hn/stories/[id]/comment";
 import { buttonVariants } from "@/components/ui/button";
-export const HNGarpi = async ({ id }: { id: string }) => {
+export const HNGarpi = async ({ id }: { id: number }) => {
   const story = await fetch(
     `https://hacker-news.firebaseio.com/v0/item/${id}.json`
   ).then((res) => res.json());
@@ -8,9 +8,6 @@ export const HNGarpi = async ({ id }: { id: string }) => {
   return (
     <div>
       <div className="text-gray-11">{story.descendants} comments</div>
-      <a className={buttonVariants()} href={story.url}>
-        Open
-      </a>
 
       <div
         className="prose mt-8"

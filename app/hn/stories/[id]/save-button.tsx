@@ -9,7 +9,7 @@ export const SaveButton = ({ url }: { url: string }) => {
       onClick={async () => {
         toast.promise(createGarpi(url, "hn"), {
           loading: "Saving...",
-          success: (data) => {
+          success: (data: any) => {
             return `Saved ${data?.title}`;
           },
         });

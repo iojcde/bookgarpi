@@ -9,8 +9,7 @@ import { GarpiActions } from "./garpi-actions";
 import { useRouter } from "next/navigation";
 
 export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
-  const hostanme =
-    garpi.type == "hn" ? "Garpi HN" : new URL(garpi.url).hostname;
+  const hostanme = new URL(garpi.url).hostname;
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
@@ -30,7 +29,6 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
       <Link
         href={`/garpi/${garpi.id}`}
         className="block p-4 border-t pt-3 cursor-pointer h-full transition"
-       
       >
         <h3 className="text-lg leading-6 font-bold  line-clamp-2 max-w-full">
           {garpi.title}
@@ -47,7 +45,7 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
       >
         <span>
           {/* <Link2Icon size={12} className="inline" /> */}
-           {hostanme}
+          {hostanme}
         </span>
       </div>
 
