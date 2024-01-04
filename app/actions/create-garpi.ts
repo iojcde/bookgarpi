@@ -9,6 +9,7 @@ import { extract } from "@extractus/article-extractor";
 import { extractArticle } from "./extract-article";
 import { revalidatePath } from "next/cache";
 import { summarizeArticle } from "./summarize-article";
+import { getTweet } from "./get-tweet";
 
 export const createGarpi = async (url: string, type: string) => {
   const session = await getServerSession(authOptions);
@@ -20,7 +21,12 @@ export const createGarpi = async (url: string, type: string) => {
   if (session.user.email !== "io@jcde.xyz") {
     return new Error("Not authorized");
   }
-
+  if (
+    (url.startsWith("https://twitter.com") && url.includes("/status/")) ||
+    (url.startsWith("https://x.com") && url.includes("/status/"))
+  ) {
+    type = "tweet";
+  }
   switch (type) {
     case "url": {
       try {
@@ -91,6 +97,28 @@ export const createGarpi = async (url: string, type: string) => {
           desc: metadata.description ?? summarized,
           content: article?.content,
           hnId: story.id,
+          type,
+        },
+      });
+    }
+
+    case "tweet": {
+      const tweetId = url.split("/").pop();
+
+      if (!tweetId) {
+        return new Error("No tweet id found");
+      }
+
+      const data = await getTweet(tweetId);
+
+      return await db.garpi.create({
+        data: {
+          userId: session?.user.id,
+          url: url,
+          title: `${data.user.name} on Twitter`,
+          image: data.mediaDetails?.filter((m) => m.type === "photo")[0]?.url,
+          desc: data.text,
+          content: data.text,
           type,
         },
       });

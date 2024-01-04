@@ -40,11 +40,16 @@ export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
 
           router.refresh();
         }}
-        className="w-full flex flex-wrap gap-2 items-center fixed px-6 bg-white dark:bg-gray-2 z-30 top-0 inset-x-0 py-2 border-b"
+        className="w-full flex flex-wrap gap-2 items-center fixed px-6 bg-white/90 backdrop-blur dark:bg-gray-2 z-30 top-0 inset-x-0 py-2 border-b"
       >
         <Link href="/" className="text-lg font-bold whitespace-nowrap">
           Garpi <span className="text-gray-10 font-medium"> / Bookmarks</span>
         </Link>
+
+
+          <Link href="/hn" className="text-sm order-none sm:order-last ml-auto text-gray-10">
+            HN Reader
+          </Link> 
         <div className="mx-auto flex gap-2">
           <input
             placeholder="Search or paste a URL..."

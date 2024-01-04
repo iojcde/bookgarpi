@@ -7,6 +7,9 @@ import { getServerSession } from "next-auth";
 import { Garpi } from "@prisma/client";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Suspense } from "react";
+import { GarpiTweet } from "./garpi-tweet";
+
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,7 +20,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+} from "@/components/ui/alert-dialog"; 
+import { TweetSkeleton } from "react-tweet";
 
 export default async function Home() {
   const session = await getServerSession();
@@ -50,14 +54,19 @@ export default async function Home() {
           </div>
         )}
       </Suspense>
-      <div className="py-4 flex gap-2 px-6 items-center font-medium">
-        <Link href="">Bookmarks</Link>
-      </div>
-      <hr/>
+      <div className="py-4 flex gap-2 px-6 items-center font-medium"></div>
       <div className=" mt-8 grid sm:grid-cols-2 mb-16 lg:grid-cols-4 gap-6">
-        {garpis.map((garpi) => (
-          <Bookmark garpi={garpi} key={garpi.id} />
-        ))}
+        {garpis.map((garpi) => {
+          if (garpi.type == "tweet") {
+            return (
+              <Suspense key={garpi.id} fallback={<TweetSkeleton />}>
+                <GarpiTweet id={garpi.url.split('/').pop() as string} />
+              </Suspense>
+            );
+          } else {
+            return <Bookmark garpi={garpi} key={garpi.id} />;
+          }
+        })}
       </div>
     </main>
   );
