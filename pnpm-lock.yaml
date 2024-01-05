@@ -62,6 +62,9 @@ dependencies:
   '@types/lodash':
     specifier: ^4.14.202
     version: 4.14.202
+  '@types/react-responsive-masonry':
+    specifier: ^2.1.3
+    version: 2.1.3
   ai:
     specifier: ^2.2.30
     version: 2.2.30(react@18.0.0)(solid-js@1.8.7)(svelte@4.2.8)(vue@3.4.3)
@@ -104,9 +107,9 @@ dependencies:
   react-dom:
     specifier: ^18
     version: 18.0.0(react@18.0.0)
-  react-stonecutter:
-    specifier: ^0.3.10
-    version: 0.3.10(react-dom@18.0.0)(react@18.0.0)
+  react-responsive-masonry:
+    specifier: ^2.1.7
+    version: 2.1.7
   react-tweet:
     specifier: ^3.2.0
     version: 3.2.0(react-dom@18.0.0)(react@18.0.0)
@@ -1604,6 +1607,12 @@ packages:
     dependencies:
       '@types/react': 18.2.45
 
+  /@types/react-responsive-masonry@2.1.3:
+    resolution: {integrity: sha512-aOFUtv3QwNMmy0BgpQpvivQ/+vivMTB6ARrzf9eTSXsLzXpVnfEtjpHpSknYDnr8KaQmlgeauAj8E7wo/qMOTg==}
+    dependencies:
+      '@types/react': 18.2.45
+    dev: false
+
   /@types/react@18.2.45:
     resolution: {integrity: sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==}
     dependencies:
@@ -2183,13 +2192,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /create-react-class@15.7.0:
-    resolution: {integrity: sha512-QZv4sFWG9S5RUvkTYWbflxeZX+JG7Cz0Tn33rQBJ+WFQTqTfUTjMjiv9tnfXazjsO5r0KhPs+AqCjyrQX6h2ng==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-    dev: false
-
   /cross-fetch@4.0.0:
     resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
     dependencies:
@@ -2418,10 +2420,6 @@ packages:
       graceful-fs: 4.2.11
       tapable: 2.2.1
     dev: true
-
-  /enquire.js@2.1.6:
-    resolution: {integrity: sha512-/KujNpO+PT63F7Hlpu4h3pE3TokKRHN26JYmQpPyjkRD/N57R7bPDNojMXdi7uveAKjYB7yQnartCxZnFWr0Xw==}
-    dev: false
 
   /enquirer@2.4.1:
     resolution: {integrity: sha512-rRqJg/6gd538VHvR3PSrdRBb/1Vy2YfzHqzvbhGIQpDRKIa4FgV/54b5Q1xYSxOOwKvjXweS26E0Q+nAMwp2pQ==}
@@ -2833,10 +2831,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ev-emitter@1.1.1:
-    resolution: {integrity: sha512-ipiDYhdQSCZ4hSbX4rMW+XzNKMD1prg/sTvoVmSLkuQ1MVlwjJQQA+sW8tMYR3BLUr9KjodFV4pvzunvRhd33Q==}
-    dev: false
-
   /event-target-shim@5.0.1:
     resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
     engines: {node: '>=6'}
@@ -3187,12 +3181,6 @@ packages:
     resolution: {integrity: sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==}
     engines: {node: '>= 4'}
     dev: true
-
-  /imagesloaded@4.1.4:
-    resolution: {integrity: sha512-ltiBVcYpc/TYTF5nolkMNsnREHW+ICvfQ3Yla2Sgr71YFwQ86bDwV9hgpFhFtrGPuwEx5+LqOHIrdXBdoWwwsA==}
-    dependencies:
-      ev-emitter: 1.1.1
-    dev: false
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -3583,40 +3571,16 @@ packages:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
     dev: false
 
-  /lodash.assign@4.2.0:
-    resolution: {integrity: sha512-hFuH8TY+Yji7Eja3mGiuAxBqLagejScbG8GbG0j6o9vzn0YL14My+ktnqtZgFTosKymC9/44wP6s7xyuLfnClw==}
-    dev: false
-
   /lodash.castarray@4.4.0:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
-    dev: false
-
-  /lodash.debounce@4.0.8:
-    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: false
-
-  /lodash.difference@4.5.0:
-    resolution: {integrity: sha512-dS2j+W26TQ7taQBGN8Lbbq04ssV3emRw4NY58WErlTO29pIqS0HmoT5aJ9+TUQ1N3G+JOZSji4eugsWwGp9yPA==}
     dev: false
 
   /lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     dev: false
 
-  /lodash.keyby@4.6.0:
-    resolution: {integrity: sha512-PRe4Cn20oJM2Sn6ljcZMeKgyhTHpzvzFmdsp9rK+6K0eJs6Tws0MqgGFpfX/o2HjcoQcBny1Eik9W7BnVTzjIQ==}
-    dev: false
-
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-
-  /lodash.omit@4.5.0:
-    resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
-    dev: false
-
-  /lodash.partition@4.6.0:
-    resolution: {integrity: sha512-35L3dSF3Q6V1w5j6V3NhNlQjzsRDC/pYKCTdYTmwqSib+Q8ponkAmt/PwEOq3EmI38DSCl+SkIVwLd+uSlVdrg==}
-    dev: false
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -4026,14 +3990,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /performance-now@0.2.0:
-    resolution: {integrity: sha512-YHk5ez1hmMR5LOkb9iJkLKqoBlL7WD5M8ljC75ZfzXriuBIVNuecaXuU7e+hOwyqf24Wxhh7Vxgt7Hnw9288Tg==}
-    dev: false
-
-  /performance-now@2.1.0:
-    resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
-    dev: false
-
   /periscopic@3.1.0:
     resolution: {integrity: sha512-vKiQ8RRtkl9P+r/+oefh25C3fhybptkHKCZSPlcXiJux2tJF55GnEj3BVn4A5gKfq9NWWXXrxkHBwVPUfH0opw==}
     dependencies:
@@ -4189,6 +4145,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
+    dev: true
 
   /psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
@@ -4205,12 +4162,6 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  /raf@3.4.1:
-    resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
-    dependencies:
-      performance-now: 2.1.0
-    dev: false
-
   /react-dom@18.0.0(react@18.0.0):
     resolution: {integrity: sha512-XqX7uzmFo0pUceWFCt7Gff6IyIMzFUn7QMZrbrQfGxtaxXZIcGQzoNpRLE3fQLnS4XzLLPMZX2T9TRcSrasicw==}
     peerDependencies:
@@ -4223,17 +4174,7 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  /react-motion@0.5.2(react@18.0.0):
-    resolution: {integrity: sha512-9q3YAvHoUiWlP3cK0v+w1N5Z23HXMj4IF4YuvjvWegWqNPfLXsOBE/V7UvQGpXxHFKRQQcNcVQE31g9SB/6qgQ==}
-    peerDependencies:
-      react: ^0.14.9 || ^15.3.0 || ^16.0.0
-    dependencies:
-      performance-now: 0.2.0
-      prop-types: 15.8.1
-      raf: 3.4.1
-      react: 18.0.0
-    dev: false
+    dev: true
 
   /react-remove-scroll-bar@2.3.4(@types/react@18.2.45)(react@18.0.0):
     resolution: {integrity: sha512-63C4YQBUt0m6ALadE9XV56hV8BgJWDmmTPY758iIJjfQKt2nYwoUrPk0LXRXcB/yIj82T1/Ixfdpdk68LwIB0A==}
@@ -4289,23 +4230,8 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.2.45)(react@18.0.0)
     dev: false
 
-  /react-stonecutter@0.3.10(react-dom@18.0.0)(react@18.0.0):
-    resolution: {integrity: sha512-baxIDPp10TLjGDY/SkQe2m01BrKiK/jZPQ932cicnP6li73UTrA/zN/9Qio8GUpQ+wMOvXkDg1UkTrcjjz7r7w==}
-    peerDependencies:
-      react: ^15.3.2 || ^16.0.0
-      react-dom: ^15.3.2 || ^16.0.0
-    dependencies:
-      enquire.js: 2.1.6
-      imagesloaded: 4.1.4
-      lodash.debounce: 4.0.8
-      lodash.omit: 4.5.0
-      lodash.partition: 4.6.0
-      prop-types: 15.8.1
-      react: 18.0.0
-      react-dom: 18.0.0(react@18.0.0)
-      react-motion: 0.5.2(react@18.0.0)
-      react-transition-group-plus: 0.5.3(react@18.0.0)
-      shallowequal: 1.1.0
+  /react-responsive-masonry@2.1.7:
+    resolution: {integrity: sha512-/jOqnTVNtO8zRJMTl6ZXBex7EFYEIFBLVlkIFjiCT7omfm0CgNF2z4ST8RIr0v2ut15NWAQs7Q3kJJPhMoe3Ew==}
     dev: false
 
   /react-style-singleton@2.2.1(@types/react@18.2.45)(react@18.0.0):
@@ -4323,20 +4249,6 @@ packages:
       invariant: 2.2.4
       react: 18.0.0
       tslib: 2.6.2
-    dev: false
-
-  /react-transition-group-plus@0.5.3(react@18.0.0):
-    resolution: {integrity: sha512-V7/T4RIzkEF+WCuoBPVKmyoTmzXnO6buQbn+/sqYg69Zl04f2pIuz1Gkue3+ivMEZdZ86jaNWpnSpiGZeQpHSA==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      create-react-class: 15.7.0
-      lodash.assign: 4.2.0
-      lodash.difference: 4.5.0
-      lodash.keyby: 4.6.0
-      object-assign: 4.1.1
-      prop-types: 15.8.1
-      react: 18.0.0
     dev: false
 
   /react-tweet@3.2.0(react-dom@18.0.0)(react@18.0.0):
@@ -4532,10 +4444,6 @@ packages:
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.1
     dev: true
-
-  /shallowequal@1.1.0:
-    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
-    dev: false
 
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
