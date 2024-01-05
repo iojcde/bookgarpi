@@ -115,7 +115,7 @@ export const createGarpi = async (url: string, type: string) => {
         data: {
           userId: session?.user.id,
           url: url,
-          title: `${data.user.name} on Twitter`,
+          title: `${data?.user.name} on Twitter`,
           image: data.mediaDetails?.filter((m) => m.type === "photo")[0]?.url,
           desc: data.text,
           content: data.text,
