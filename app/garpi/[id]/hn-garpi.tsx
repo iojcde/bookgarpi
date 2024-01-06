@@ -17,7 +17,7 @@ export const HNGarpi = async ({ id }: { id: number }) => {
       <hr className="my-2" />
 
       <div className="space-y-1 overflow-x-hidden mt-8">
-        {story.kids?.map((id: number) => (
+        {story?.kids?.map((id: number) => (
           <Comment isParent={true} id={id} key={id} />
         ))}
       </div>
