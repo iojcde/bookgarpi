@@ -54,7 +54,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
     </div>
   );
 };
-
+/*
 export async function generateStaticParams() {
   const stories = await fetch(
     "https://hacker-news.firebaseio.com/v0/topstories.json",
@@ -65,7 +65,7 @@ export async function generateStaticParams() {
     id: id.toString(),
   }));
 }
-
+*/
 export default StoryPage;
 
 export async function generateMetadata({
