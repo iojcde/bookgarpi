@@ -1,17 +1,17 @@
 "use client";
-import Masonry from "react-masonry-css";
+import Masonry from "@/components/masonry";
 import { ReactNode } from "react";
 
 // masonry grid
 export const Grid = ({ children }: { children: ReactNode }) => {
   return (
     <Masonry
-      className="my-masonry-grid gap-6"
+      className="my-masonry-grid grid justify-items-center sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6"
       breakpointCols={{
         default: 4,
-        1200: 3,
-        700: 2,
-        500: 1,
+        1280: 4,
+        1024: 3,
+        640: 2,  
       }}
     >
       {children}

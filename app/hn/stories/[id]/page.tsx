@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Comment } from "./comment";
 import { Suspense } from "react";
 import { SaveButton } from "./save-button";
+import { notFound } from "next/navigation";
 
 const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
   const res = await fetch(
@@ -12,6 +13,10 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
     return null;
   }
   const story = await res.json();
+
+  if (!story) {
+    return notFound();
+  }
 
   return (
     <div className="rounded-md mt-4 py-1 border-gray-3">
@@ -54,7 +59,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
     </div>
   );
 };
-/*
+
 export async function generateStaticParams() {
   const stories = await fetch(
     "https://hacker-news.firebaseio.com/v0/topstories.json",
@@ -65,7 +70,7 @@ export async function generateStaticParams() {
     id: id.toString(),
   }));
 }
-*/
+
 export default StoryPage;
 
 export async function generateMetadata({
