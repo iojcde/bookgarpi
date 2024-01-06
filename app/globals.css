@@ -18,6 +18,7 @@
 
 }
 
+ 
 *{
   @apply border-gray-5
 }
@@ -35,4 +36,14 @@ body{
   @apply bg-gray-1 text-gray-12 ; 
 }
 
+ 
+ 
+.my-masonry-grid { 
+  display: flex; 
+  width: auto;
+}
+
+.my-masonry-grid > div {
+  @apply space-y-6;
+}
  

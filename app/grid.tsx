@@ -1,13 +1,20 @@
 "use client";
+import Masonry from "react-masonry-css";
 import { ReactNode } from "react";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
+// masonry grid
 export const Grid = ({ children }: { children: ReactNode }) => {
   return (
-    <ResponsiveMasonry
-      columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1200: 4 }}
+    <Masonry
+      className="my-masonry-grid gap-6"
+      breakpointCols={{
+        default: 4,
+        1200: 3,
+        700: 2,
+        500: 1,
+      }}
     >
-      <Masonry gutter="1.5rem">{children}</Masonry>
-    </ResponsiveMasonry>
+      {children}
+    </Masonry>
   );
 };

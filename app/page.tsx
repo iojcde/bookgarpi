@@ -55,7 +55,7 @@ export default async function Home() {
         )}
       </Suspense>
       <div className="py-4 flex gap-2 px-6 items-center font-medium"></div>
-      <Grid >
+      <Grid>
         {garpis.map((garpi) => {
           if (garpi.type == "tweet") {
             return (
