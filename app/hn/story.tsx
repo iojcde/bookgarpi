@@ -34,7 +34,7 @@ export const Story = async ({
 
       <div className="flex gap-1 text-gray-11 text-sm items-center">
         <span>
-          {story.score} points by {story.by}
+          {story.score} points by {story?.by}
         </span>
         ·<Link href={`/hn/stories/${id}`}>{story.descendants} comments</Link>
       </div>
