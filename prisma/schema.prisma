@@ -74,6 +74,8 @@ model Garpi {
   content    String?
   hnId       Int?
 
+  tags String[]
+
   createdAt DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
