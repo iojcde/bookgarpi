@@ -39,7 +39,7 @@ export const POST = async (req: NextRequest) => {
 
     await s3.send(
       new PutObjectCommand({
-        Bucket: "garpi-s3",
+        Bucket: "3bcadaaa775de64c82c60a1e",
         Key: encodeURIComponent(url) + ".png",
         Body: file,
       })
