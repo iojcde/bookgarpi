@@ -8,9 +8,8 @@ export const createScreenshot = async (url: string, garpiID: string) => {
   if (!session) {
     throw new Error("No session found");
   }
-
-  const baseUrl = process.env.VERCEL_URL || process.env.NEXTAUTH_URL;
-  fetch(`${baseUrl}/api/screenshot`, {
+ 
+  fetch(`https://garpi.vercel.app/api/screenshot`, {
     method: "POST",
     headers: { authorization: process.env.SCREENSHOT_SECRET as string },
     body: JSON.stringify({ url }),
