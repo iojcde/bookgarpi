@@ -1,7 +1,24 @@
-"use server"
+"use server";
 import { getScreenshot } from "./lib/puppeteer";
 import { NextRequest, NextResponse } from "next/server";
-
+import {
+  S3Client,
+  CreateBucketCommand,
+  PutObjectCommand,
+} from "@aws-sdk/client-s3";
+import { v4 as uuid } from "uuid";
+// Create an S3 client
+//
+// You must copy the endpoint from your B2 bucket details
+// and set the region to match.
+const s3 = new S3Client({
+  endpoint: "s3.us-west-000.backblazeb2.com",
+  region: "us-west-000",
+  credentials: {
+    accessKeyId: process.env.B2_KEY_ID as string,
+    secretAccessKey: process.env.B2_KEY as string,
+  },
+});
 export const POST = async (req: NextRequest) => {
   const auth = req.headers.get("authorization");
 
@@ -20,7 +37,15 @@ export const POST = async (req: NextRequest) => {
   try {
     const file = await getScreenshot(url);
 
-    return new Response(file, { status: 200 });
+    await s3.send(
+      new PutObjectCommand({
+        Bucket: "garpi-s3",
+        Key: encodeURIComponent(url) + ".png",
+        Body: file,
+      })
+
+      
+    );
   } catch (error) {
     console.error(error);
     return new Response(

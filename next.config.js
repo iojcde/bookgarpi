@@ -12,7 +12,7 @@ const nextConfig = {
     },
   }),
   experimental: {
-      serverComponentsExternalPackages: ['puppeteer-core'],
+      serverComponentsExternalPackages: ['puppeteer-core','chrome-aws-lambda'],
   }
 }
 

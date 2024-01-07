@@ -94,7 +94,7 @@ const config: Config = {
               "--tw-prose-quote-borders": theme(`colors.gray.6`),
               "--tw-prose-captions": theme(`colors.gray.11`),
               "--tw-prose-code": theme(`colors.gray.12`),
-              "--tw-prose-pre-code": theme(`colors.gray.12`),
+              "--tw-prose-pre-code": theme(`colors.gray.2`),
               "--tw-prose-pre-bg": theme(`colors.gray.2`),
               "--tw-prose-th-borders": theme(`colors.gray.6`),
               "--tw-prose-td-borders": theme(`colors.gray.6`),
