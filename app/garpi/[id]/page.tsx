@@ -47,7 +47,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
       </div>
 
       <div
-        className="prose dark:prose-invert lg:prose-lg mt-16 max-w-[80ch]"
+        className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]"
         dangerouslySetInnerHTML={{ __html: garpi.content || "" }}
       ></div>
 

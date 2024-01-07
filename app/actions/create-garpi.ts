@@ -10,6 +10,7 @@ import { extractArticle } from "./extract-article";
 import { revalidatePath } from "next/cache";
 import { summarizeArticle } from "./summarize-article";
 import { getTweet } from "./get-tweet";
+import { createScreenshot } from "./create-screenshot";
 
 export const createGarpi = async (url: string, type: string) => {
   const session = await getServerSession(authOptions);
@@ -49,8 +50,7 @@ export const createGarpi = async (url: string, type: string) => {
           console.error(e);
         }
       }
-
-      return await db.garpi.create({
+      const newGarpi = await db.garpi.create({
         data: {
           userId: session?.user.id,
           url,
@@ -62,6 +62,10 @@ export const createGarpi = async (url: string, type: string) => {
           type,
         },
       });
+
+      await createScreenshot(url, newGarpi.id);
+
+      return newGarpi;
     }
     case "hn": {
       const id = url.split("/").pop();
@@ -88,7 +92,7 @@ export const createGarpi = async (url: string, type: string) => {
         }
       }
 
-      return await db.garpi.create({
+      const newGarpi = await db.garpi.create({
         data: {
           userId: session?.user.id,
           url: story.url,
@@ -100,6 +104,10 @@ export const createGarpi = async (url: string, type: string) => {
           type,
         },
       });
+
+      await createScreenshot(url, newGarpi.id);
+
+      return newGarpi;
     }
 
     case "tweet": {

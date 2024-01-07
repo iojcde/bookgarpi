@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { TweetSkeleton } from "react-tweet";
 import { Grid } from "./grid";
+import TagInputDemo from "@/components/tag/tag-input-demo";
 
 export default async function Home() {
   const session = await getServerSession();

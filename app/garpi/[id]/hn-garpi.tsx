@@ -10,7 +10,7 @@ export const HNGarpi = async ({ id }: { id: number }) => {
       <div className="text-gray-11">{story.descendants} comments</div>
 
       <div
-        className="prose mt-8"
+        className="prose prose-radix mt-8"
         dangerouslySetInnerHTML={{ __html: story.text || "" }}
       ></div>
 
