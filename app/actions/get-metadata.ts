@@ -58,7 +58,7 @@ export async function getMetadata(url: string) {
 
  
   if (data.image && data.image.startsWith("/")) {
-    data.image = new URL(data.image, 'https://:' + new URL(url).hostname).toString();
+    data.image = new URL(data.image, new URL(url).hostname).toString();
   } 
 
   return data
