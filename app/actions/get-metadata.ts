@@ -49,13 +49,19 @@ export async function getMetadata(url: string) {
 
   let firstImage = images.length > 0 ? images[0].getAttribute("src") : null;
 
-  if (firstImage && firstImage.startsWith("/")) {
-    firstImage = new URL(firstImage, url).toString();
-  }
 
-  return {
+  let data = {
     image: twitterImage ?? ogImage ?? firstImage,
     title: title ?? twitterTitle ?? ogTitle,
     description: twitterDescription ?? ogDescription,
   };
+
+ 
+  if (data.image && data.image.startsWith("/")) {
+    data.image = new URL(data.image, new URL(url).hostname).toString();
+  } 
+
+  return data
+
+  
 }
