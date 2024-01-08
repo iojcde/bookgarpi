@@ -3,6 +3,12 @@ import { launch, Page } from "puppeteer-core";
 import chromium from "@sparticuz/chromium-min";
 let _page: Page | null;
 
+// Optional: If you'd like to use the legacy headless mode. "new" is the default.
+chromium.setHeadlessMode = true;
+
+// Optional: If you'd like to disable webgl, true is the default.
+chromium.setGraphicsMode = false;
+
 async function getPage() {
   if (_page) return _page;
   const browser = await launch({
