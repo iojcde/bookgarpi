@@ -9,7 +9,7 @@ async function getPage() {
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath(
-      "https://github.com/Sparticuz/chromium/releases/download/v112.0.2/chromium-v112.0.2-pack.tar"
+      "https://garpi.vercel.app/chromium-v112.0.2-pack.tar"
     ),
     headless: chromium.headless,
   });
