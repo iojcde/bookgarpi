@@ -1,19 +1,11 @@
 "use server";
-import { launch, Page } from "puppeteer-core";
-import chromium from "@sparticuz/chromium-min";
+import { connect, Page } from "puppeteer-core";
 let _page: Page | null;
 
 async function getPage() {
   if (_page) return _page;
-  const browser = await launch({
-    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-    defaultViewport: chromium.defaultViewport,
-
-    executablePath: await chromium.executablePath(
-      "https://github.com/Sparticuz/chromium/releases/download/v112.0.2/chromium-v112.0.2-pack.tar"
-    ),
-    headless: chromium.headless,
-    ignoreHTTPSErrors: true,
+  const browser = await connect({
+    browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`,
   });
   _page = await browser.newPage();
   return _page;
