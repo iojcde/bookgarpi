@@ -63,7 +63,7 @@ export const createGarpi = async (url: string, type: string) => {
         },
       });
 
-      //await createScreenshot(url, newGarpi.id);
+      await createScreenshot(url, newGarpi.id);
 
       return newGarpi;
     }
