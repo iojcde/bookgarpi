@@ -28,9 +28,6 @@
 }
 
 
-.prose pre code {
-  @apply text-gray-1;
-} 
 body{
   
   @apply bg-gray-1 text-gray-12 ; 
