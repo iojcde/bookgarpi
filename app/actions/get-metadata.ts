@@ -49,19 +49,21 @@ export async function getMetadata(url: string) {
 
   let firstImage = images.length > 0 ? images[0].getAttribute("src") : null;
 
-
   let data = {
     image: twitterImage ?? ogImage ?? firstImage,
     title: title ?? twitterTitle ?? ogTitle,
     description: twitterDescription ?? ogDescription,
   };
+  if (data.image && data.image.startsWith("/")) {
+    console.log(new URL(url));
+    data.image = new URL(
+      data.image,
+      "https://" + new URL(url).hostname
+    ).toString();
+  } else if (data.image && !data.image.startsWith("http")) {
+    // relative path
+    data.image = new URL(data.image, url).toString();
+  }
 
- 
-  // if (data.image && data.image.startsWith("/")) {
-  //   data.image = new URL(data.image, new URL(url).hostname).toString();
-  // } 
-
-  return data
-
-  
+  return data;
 }

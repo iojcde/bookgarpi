@@ -9,7 +9,7 @@ interface MasonryProps {
   column?: React.HTMLAttributes<HTMLDivElement>; // Deprecated
 }
 
-const DEFAULT_COLUMNS = 2;
+const DEFAULT_COLUMNS = 1;
 
 const Masonry: React.FC<MasonryProps> = ({
   breakpointCols,

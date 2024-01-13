@@ -11,7 +11,8 @@ export const Grid = ({ children }: { children: ReactNode }) => {
         default: 4,
         1280: 4,
         1024: 3,
-        640: 2,  
+        640: 2,
+        500: 1,
       }}
     >
       {children}
