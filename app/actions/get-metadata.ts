@@ -54,8 +54,7 @@ export async function getMetadata(url: string) {
     title: title ?? twitterTitle ?? ogTitle,
     description: twitterDescription ?? ogDescription,
   };
-  if (data.image && data.image.startsWith("/")) {
-    console.log(new URL(url));
+  if (data.image && data.image.startsWith("/")) { 
     data.image = new URL(
       data.image,
       "https://" + new URL(url).hostname
