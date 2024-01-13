@@ -22,11 +22,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-
-  modal,
+ 
 }: {
-  children: React.ReactNode;
-  modal?: React.ReactNode;
+  children: React.ReactNode; 
 }) {
   return (
     <html lang="en">
@@ -34,7 +32,7 @@ export default function RootLayout({
         <div>{children}</div>
         <Toaster />
       </body>
-      {modal}
+      {/* {modal} */}
     </html>
   );
 }
