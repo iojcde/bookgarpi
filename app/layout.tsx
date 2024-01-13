@@ -3,6 +3,7 @@ import localfont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Nav } from "./components/nav";
+import { Analytics } from "@vercel/analytics/react";
 import { cn } from "@/lib/utils";
 
 const wanted = localfont({
@@ -22,9 +23,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
- 
 }: {
-  children: React.ReactNode; 
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -32,6 +32,7 @@ export default function RootLayout({
         <div>{children}</div>
         <Toaster />
       </body>
+      <Analytics />
       {/* {modal} */}
     </html>
   );
