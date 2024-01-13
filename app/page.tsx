@@ -42,7 +42,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen px-6 mt-16 bg-gray-1 max-w-[90rem] mx-auto">
+    <main className="min-h-screen px-6 mt-24 bg-gray-1 max-w-[90rem] mx-auto">
       <Suspense>
         {session ? (
           <Bookmarker initialgarpis={garpis} />
@@ -72,3 +72,8 @@ export default async function Home() {
     </main>
   );
 }
+
+export const metadata = {
+  title: "Garpi",
+  description: "Garpi is a bookmarking service for thinkers.",
+};

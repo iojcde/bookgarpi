@@ -24,7 +24,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="container py-20 max-w-[80ch]">
+    <div className="container mt-8 max-w-[80ch]">
       <Link
         href="/"
         className={cn(

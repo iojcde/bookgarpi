@@ -14,8 +14,6 @@
   --tweet-container-margin: 0rem 0 !important;
   
   --tweet-body-font-size: 1rem !important;
-
-
 }
 
  
@@ -29,8 +27,9 @@
 
 
 .prose pre code {
-  @apply text-gray-1;
+  @apply text-gray-12;
 } 
+
 body{
   
   @apply bg-gray-1 text-gray-12 ; 
