@@ -1,4 +1,4 @@
-import { Bookmarker } from "./garpi-maker";
+import { MainNav } from "./main-nav";
 import { Bookmark } from "./garpi";
 import Link from "next/link";
 import { db } from "@/lib/db";
@@ -9,43 +9,41 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Suspense } from "react";
 import { GarpiTweet } from "./garpi-tweet";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { TweetSkeleton } from "react-tweet";
 import { Grid } from "./grid";
 import TagInputDemo from "@/components/tag/tag-input-demo";
+import { searchGarpi } from "./actions/search";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const session = await getServerSession();
 
   let garpis: Garpi[];
   if (!session) {
     garpis = [];
   } else {
-    garpis = await db.garpi.findMany({
-      where: {
-        userId: session?.user.id,
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+    if (searchParams?.q) {
+      garpis = await searchGarpi(searchParams.q as string);
+    } else {
+      garpis = await db.garpi.findMany({
+        where: {
+          userId: session?.user.id,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    }
   }
 
   return (
-    <main className="min-h-screen px-6 mt-24 bg-gray-1 max-w-[90rem] mx-auto">
+    <main className="min-h-screen bg-gray-1 mx-auto">
       <Suspense>
         {session ? (
-          <Bookmarker initialgarpis={garpis} />
+          <MainNav initialgarpis={garpis} />
         ) : (
           <div>
             로그인이 필요합니다.
@@ -55,20 +53,29 @@ export default async function Home() {
           </div>
         )}
       </Suspense>
-      <div className="py-4 flex gap-2 px-6 items-center font-medium"></div>
-      <Grid>
-        {garpis.map((garpi) => {
-          if (garpi.type == "tweet") {
-            return (
-              <Suspense key={garpi.id} fallback={<TweetSkeleton />}>
-                <GarpiTweet id={garpi.url.split("/").pop() as string} />
-              </Suspense>
-            );
-          } else {
-            return <Bookmark garpi={garpi} key={garpi.id} />;
-          }
-        })}
-      </Grid>
+      <div className=" max-w-[90rem]  px-6 mx-auto mt-8">
+        {garpis.length > 0 ? (
+          <Grid>
+            {garpis.map((garpi) => {
+              if (garpi.type == "tweet") {
+                return (
+                  <Suspense key={garpi.id} fallback={<TweetSkeleton />}>
+                    <GarpiTweet id={garpi.url.split("/").pop() as string} />
+                  </Suspense>
+                );
+              } else {
+                return <Bookmark garpi={garpi} key={garpi.id} />;
+              }
+            })}
+          </Grid>
+        ) : (
+          <div className="w-full text-center mt-16">
+            <div className="font-bold text-3xl">No Garpis found...</div>
+
+            <p className="mt-4">Try searching for something else? </p>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

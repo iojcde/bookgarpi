@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => ({
-    ...config,
-    externals:[...config.externals, 'chrome-aws-lambda'],
+    ...config, 
     resolve: {
       ...config.resolve,
       alias: {
@@ -12,7 +11,14 @@ const nextConfig = {
     },
   }),
   experimental: {
-      serverComponentsExternalPackages: ['puppeteer-core','@sparticuz/chromium-min'],
+      serverComponentsExternalPackages: ['puppeteer-core',],
+  },
+  images:{
+    remotePatterns:[
+      {
+        hostname:'f000.backblazeb2.com'
+      }
+    ]
   }
 }
 

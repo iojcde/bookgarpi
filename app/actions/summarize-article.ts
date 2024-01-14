@@ -11,7 +11,7 @@ export const summarizeArticle = async (body: string) => {
   const session = await getServerSession();
 
   if (!session) {
-    return 'Failed to crate a create a description';
+    return "Failed to crate a create a description";
   }
 
   const regexForStripHTML = /(<([^>]+)>)/gi;
@@ -26,7 +26,7 @@ export const summarizeArticle = async (body: string) => {
       {
         role: "user",
         content:
-          "Create a short description (< 200 chars) for the following content :\n" +
+          "Create a short description (< 100 chars) for the following content :\n" +
           stripContent.replaceAll("\n\n", "\n").slice(0, 1500),
       },
     ],

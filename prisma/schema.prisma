@@ -1,18 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// prisma/schema.prisma
-datasource db {
-  provider = "postgresql"
-
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
-  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL") 
-}
-
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch"]
+  previewFeatures = ["fullTextSearch", "postgresqlExtensions"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model VerificationToken {
@@ -29,15 +23,14 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -57,31 +50,24 @@ model User {
   emailVerified DateTime?
   image         String?
   admin         Boolean   @default(false)
-
-  accounts Account[]
-  sessions Session[]
-  Garpis   Garpi[]
+  accounts      Account[]
+  Garpis        Garpi[]
+  sessions      Session[]
 }
 
 model Garpi {
-  id String @id @default(cuid())
-
+  id         String   @id @default(cuid())
   title      String
-  image      String?
   customName String?
   url        String
+  userId     String
   desc       String?
+  createdAt  DateTime @default(now())
+  image      String?
+  type       String
   content    String?
+  author     String?
   hnId       Int?
-
-  tags String[]
-
-  createdAt DateTime @default(now())
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-
-  author String?
-
-  type String
+  tags       String[]
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

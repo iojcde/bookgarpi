@@ -1,7 +1,11 @@
 "use server";
 
 import { Upload } from "@aws-sdk/lib-storage";
-import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import {
+  HeadObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 import { getServerSession } from "next-auth";
 
 const s3 = new S3Client({
@@ -19,6 +23,17 @@ export const createScreenshot = async (url: string, garpiID: string) => {
   if (!session) {
     throw new Error("No session found");
   }
+
+  try {
+    const existsData = await s3.send(
+      new HeadObjectCommand({ Bucket: "garpi-s3", Key: garpiID + ".png" })
+    );
+
+    if (existsData.$metadata.httpStatusCode === 200) {
+      console.log("already exists");
+      return;
+    }
+  } catch (e) {}
 
   const res = await fetch(
     `${process.env.SCREENSHOT_URL}/screenshot?token=${process.env.SCREENSHOT_SECRET}`,
@@ -47,7 +62,7 @@ export const createScreenshot = async (url: string, garpiID: string) => {
         client: s3,
         params: {
           Bucket: "garpi-s3",
-          Key: encodeURIComponent(url) + ".png",
+          Key: garpiID + ".png",
           Body: res.body,
         },
 
@@ -59,11 +74,8 @@ export const createScreenshot = async (url: string, garpiID: string) => {
         leavePartsOnError: false, // optional manually handle dropped parts
       });
 
-      parallelUploads3.on("httpUploadProgress", (progress) => {
-        console.log(progress);
-      });
-
       await parallelUploads3.done();
+      console.log("uploaded to s3");
     } catch (e) {
       console.log(e);
     }

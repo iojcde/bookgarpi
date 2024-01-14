@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root{
-  
+   
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-
+  
   --radius: 0.5rem;
 
 }
@@ -32,12 +32,11 @@
 
 body{
   
-  @apply bg-gray-1 text-gray-12 ; 
+  @apply bg-gray-1 text-gray-12  ; 
 }
 
   
 
 .my-masonry-grid > div {
   @apply space-y-6;
-}
- 
+} 

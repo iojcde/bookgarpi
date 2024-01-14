@@ -2,7 +2,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Garpi } from "@prisma/client";
-import { Link2Icon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { GarpiActions } from "./garpi-actions";
@@ -14,26 +14,30 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="item  border border-gray-5 items-start rounded-xl hover:shadow transition bg-white dark:bg-gray-2 w-full h-[335px] relative overflow-hidden group">
+    <div className="item  border border-gray-5 items-start rounded-xl hover:shadow transition bg-white dark:bg-gray-2 w-full h-[280px] relative overflow-hidden group">
       {garpi.image ? (
         <img
           alt=""
           src={garpi.image}
-          className={cn("w-full  object-cover h-[11rem] transition-all")}
+          className={cn("w-full  object-cover h-40 transition-all")}
         />
       ) : (
-        <div className="bg-gradient-to-br from-gray-3 text-gray-11 flex items-center justify-center to-white h-48 w-full">
-          No Preview Image found...
-        </div>
+        <Image
+          alt=""  
+          width={300}
+          height={160}
+          src={`https://f000.backblazeb2.com/file/garpi-s3/${garpi.id}.png`}
+          className={cn("w-full  object-cover h-40 transition-all object-top")}
+        />
       )}
       <Link
         href={`/garpi/${garpi.id}`}
         className="block p-4 border-t pt-3 cursor-pointer h-full transition"
       >
-        <h3 className="text-lg leading-6 font-bold  line-clamp-2 max-w-full">
+        <h3 className="leading-6 font-bold  line-clamp-1 max-w-full">
           {garpi.title}
         </h3>{" "}
-        <div className="text-gray-11 mt-2 text-xs line-clamp-3">
+        <div className="text-gray-11 mt-2 text-xs line-clamp-2">
           {garpi.desc || "No description found..."}
         </div>
         {/* <GarpiActions/> */}
@@ -43,10 +47,14 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
           "absolute bottom-1 transition p-1 px-4 text-gray-10 text-xs"
         )}
       >
-        <span>
+        <Link
+          href={garpi.url}
+          className="hover:underline hover:text-gray-11"
+          target=""
+        >
           {/* <Link2Icon size={12} className="inline" /> */}
           {hostanme}
-        </span>
+        </Link>
       </div>
 
       <GarpiActions open={open} setOpen={setOpen} id={garpi.id} />
