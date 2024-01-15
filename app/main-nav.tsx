@@ -29,6 +29,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
   const [inputValue, setInputValue] = useState("");
+  const [filterOpen, setFilterOpen] = useState(false);
   const router = useRouter();
 
   return (
@@ -50,10 +51,7 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
               const query = formData.get("query") as string;
               router.push(`/?q=${query}`);
             }}
-            className={cn(
-              " rounded-t-lg transition",
-              inputValue.trim().length == 0 && "focus-within:bg-gray-3"
-            )}
+           
           >
             <div className=" transition  px-4 rounded-lg relative group mx-auto sm:w-[48rem] bg-gray-3 text-gray-11 outline-none py-1 sm:py-2 focus-within:bg-gray-5 gap-2 flex items-center">
               <Search size={16} className="text-gray-10" />
@@ -67,6 +65,12 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
 
                   if (e.target.value.trim().length == 0) {
                     router.push(`/`);
+                  }
+                }}
+                onKeyUp={(e) => {
+                  //esc
+                  if (e.key === "Escape") {
+                    setInputValue(""); 
                   }
                 }}
                 name="query"

@@ -85,7 +85,7 @@ const config: Config = {
               "--tw-prose-body": theme(`colors.gray.12`),
               "--tw-prose-headings": theme(`colors.gray.12`),
               "--tw-prose-lead": theme(`colors.gray.11`),
-              "--tw-prose-links": theme(`colors.blue.10`),
+              "--tw-prose-links": theme(`colors.blue.12`),
               "--tw-prose-bold": theme(`colors.gray.12`),
               "--tw-prose-counters": theme(`colors.gray.10`),
               "--tw-prose-bullets": theme(`colors.gray.8`),

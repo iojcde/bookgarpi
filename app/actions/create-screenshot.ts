@@ -65,24 +65,23 @@ export const createScreenshot = async (url: string, garpiID: string) => {
           Key: garpiID + ".png",
           Body: res.body,
         },
-
-        tags: [
-          /*...*/
-        ], // optional tags
-        queueSize: 4, // optional concurrency configuration
-        partSize: 1024 * 1024 * 5, // optional size of each part, in bytes, at least 5MB
+ 
         leavePartsOnError: false, // optional manually handle dropped parts
+      });
+
+      parallelUploads3.on("httpUploadProgress", (progress) => {
+        console.log(progress);
       });
 
       await parallelUploads3.done();
       console.log("uploaded to s3");
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   } catch (error) {
     console.error(error);
     return new Response(
-      "The server encountered an error. You may have inputted an invalid query.",
+      "The server encountered an error. You may have inputed an invalid query.",
       { status: 500 }
     );
   }
