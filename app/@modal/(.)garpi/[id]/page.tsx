@@ -8,7 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import { Dialog, DialogContent } from "../../modal";
+import { Dialog, DialogContent } from "../../dialog-copy";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
