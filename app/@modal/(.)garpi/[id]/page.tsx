@@ -14,7 +14,6 @@ import { Suspense } from "react";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getServerSession();
-  const router = useRouter();
 
   if (!session) {
     return null;
@@ -30,11 +29,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <Dialog defaultOpen>
-      <DialogContent
-        onAnimationEnd={() => {
-          router.back();
-        }}
-      >
+      <DialogContent>
         <ScrollArea className="h-full">
           <Suspense>
             <div className="container mt-8 max-w-[80ch] p-6">
