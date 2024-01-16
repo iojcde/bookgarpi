@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 
 import { Dialog, DialogContent } from "../../dialog-copy";
 import { ScrollArea } from "@/components/ui/scroll-area";
+
+import Markdown from "react-markdown";
 import { Suspense } from "react";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
@@ -53,10 +55,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
                   Open
                 </Link>
               </div>
-              <div
-                className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]"
-                dangerouslySetInnerHTML={{ __html: garpi.content || "" }}
-              ></div>
+              <Markdown className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]">{garpi.content}</Markdown>
               {garpi.type === "hn" ? (
                 <>{<HNGarpi id={garpi.hnId as number} />}</>
               ) : null}

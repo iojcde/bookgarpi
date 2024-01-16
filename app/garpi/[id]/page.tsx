@@ -7,6 +7,7 @@ import { HNGarpi } from "./hn-garpi";
 import { ChevronLeft } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Markdown from "react-markdown";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getServerSession();
@@ -46,11 +47,8 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
         </Link>
       </div>
 
-      <div
-        className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]"
-        dangerouslySetInnerHTML={{ __html: garpi.content || "" }}
-      ></div>
-
+      <Markdown className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]">{garpi.content}</Markdown>
+        
       {garpi.type === "hn" ? <>{<HNGarpi id={garpi.hnId as number} />}</> : null}
     </div>
   );
