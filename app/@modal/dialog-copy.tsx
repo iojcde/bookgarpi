@@ -43,8 +43,7 @@ const DialogContent = React.forwardRef<
       <DialogOverlay />
       <DialogPrimitive.Content
         onAnimationEnd={(e) => {
-          alert(e.animationName)
-          if (e.animationName === "animate-out") router.back();
+          if (e.animationName === "exit") router.back();
         }}
         ref={ref}
         className={cn(
