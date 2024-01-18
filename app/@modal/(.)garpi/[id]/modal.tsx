@@ -20,16 +20,18 @@ const Loading = () => {
 };
 
 const GarpiModal = ({ children }: { children: ReactNode }) => {
-  const { width } = useWindowSize();
+  const { width, height } = useWindowSize();
   const router = useRouter();
   if (!width) return null;
 
   if (width < 640) {
     return (
       <Drawer
+        closeThreshold={0.1}
         open
         onClose={() => {
-          router.back();
+          // delay to allow drawer to close
+          setTimeout(() => router.back(), 200);
         }}
       >
         <DrawerContent className="h-full">
