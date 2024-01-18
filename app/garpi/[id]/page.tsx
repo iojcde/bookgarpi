@@ -8,6 +8,9 @@ import { ChevronLeft } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Details } from "../../../components/details";
+import remarkGfm from "remark-gfm";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getServerSession();
@@ -25,31 +28,44 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="container mt-8 max-w-[80ch]">
-      <Link
-        href="/"
-        className={cn(
-          "flex items-center -ml-8",
-          buttonVariants({ variant: "ghost" })
-        )}
-      >
-        <ChevronLeft className="text-gray-11" size={20} /> Home
-      </Link>
-      <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
-        {garpi.title}
-      </h1>
-      <hr className="my-3" />
-      <div className="flex items-center justify-between">
-        {garpi.author}
+    <div className="absolute inset-0 flex">
+      <Details />
 
-        <Link href={garpi.url} className="text-gray-11">
-          Open
-        </Link>
-      </div>
+      <ScrollArea className="h-full w-full ">
+        <div className="container mt-8 max-w-[80ch]">
+          <Link
+            href="/"
+            className={cn(
+              "flex items-center -ml-8",
+              buttonVariants({ variant: "ghost" })
+            )}
+          >
+            <ChevronLeft className="text-gray-11" size={20} /> Home
+          </Link>
+          <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
+            {garpi.title}
+          </h1>
+          <hr className="my-3" />
+          <div className="flex items-center justify-between">
+            {garpi.author}
 
-      <Markdown className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]">{garpi.content}</Markdown>
-        
-      {garpi.type === "hn" ? <>{<HNGarpi id={garpi.hnId as number} />}</> : null}
+            <Link href={garpi.url} className="text-gray-11">
+              Open
+            </Link>
+          </div>
+
+          <Markdown
+            remarkPlugins={[remarkGfm]}
+            className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]"
+          >
+            {garpi.content}
+          </Markdown>
+
+          {garpi.type === "hn" ? (
+            <>{<HNGarpi id={garpi.hnId as number} />}</>
+          ) : null}
+        </div>
+      </ScrollArea>
     </div>
   );
 };

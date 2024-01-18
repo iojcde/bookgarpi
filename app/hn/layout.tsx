@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Nav } from "../components/nav";
+import { Nav } from "../../components/nav";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (

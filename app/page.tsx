@@ -53,7 +53,7 @@ export default async function Home({
           </div>
         )}
       </Suspense>
-      <div className=" max-w-[90rem]  px-6 mx-auto mt-8">
+      <div className=" max-w-[92rem]  px-6 mx-auto mt-8">
         {garpis.length > 0 ? (
           <Grid>
             {garpis.map((garpi) => {

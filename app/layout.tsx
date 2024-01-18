@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localfont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { Nav } from "./components/nav";
+import { Nav } from "../components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { cn } from "@/lib/utils";
 

@@ -6,7 +6,7 @@
    
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
 }
 
@@ -40,3 +40,16 @@ body{
 .my-masonry-grid > div {
   @apply space-y-6;
 } 
+
+[data-radix-scroll-area-viewport] > div {
+  @apply !block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin { 
+  animation: spin 1s linear infinite;
+}
