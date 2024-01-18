@@ -28,16 +28,11 @@ const GarpiModal = ({ children }: { children: ReactNode }) => {
     return (
       <Drawer
         open
-        // onClose={() => {
-        //   router.back();
-        // }}
+        onClose={() => {
+          router.back();
+        }}
       >
-        <DrawerContent
-          onAnimationEndCapture={() => {
-            alert("wow");
-          }}
-          className="h-full"
-        >
+        <DrawerContent className="h-full">
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </DrawerContent>
       </Drawer>
