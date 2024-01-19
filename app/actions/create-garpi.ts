@@ -43,21 +43,22 @@ export const createGarpi = async (url: string, type: string) => {
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(
-            article?.content ?? (await fetch(url).then((res) => res.text()))
+            article?.content || (await fetch(url).then((res) => res.text()))
           );
         } catch (e) {
           console.error(e);
         }
       }
+ 
       const newGarpi = await db.garpi.create({
         data: {
           userId: session?.user.id,
           url,
-          title: metadata.title ?? url,
+          title: metadata.title || url,
           image: metadata.image,
-          desc: metadata.description ?? summarized,
+          desc: metadata.description || summarized,
           content: article?.content,
-          author: article?.author ?? metadata.author,
+          author: article?.author || metadata.author,
           type,
         },
       });
@@ -84,7 +85,7 @@ export const createGarpi = async (url: string, type: string) => {
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(
-            article?.content ?? (await fetch(url).then((res) => res.text()))
+            article?.content|| (await fetch(url).then((res) => res.text()))
           );
         } catch (e) {
           console.error(e);
@@ -95,10 +96,10 @@ export const createGarpi = async (url: string, type: string) => {
         data: {
           userId: session?.user.id,
           url: story.url,
-          title: story.title ?? metadata.title,
+          title: story.title || metadata.title,
           image: metadata.image,
-          author: article?.author ?? metadata.author,
-          desc: metadata.description ?? summarized,
+          author: article?.author || metadata.author,
+          desc: metadata.description || summarized,
           content: article?.content,
           hnId: story.id,
           type,

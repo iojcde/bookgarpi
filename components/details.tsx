@@ -3,11 +3,29 @@ import { Label } from "./ui/label";
 
 export const Details = ({ garpi }: { garpi: Garpi }) => {
   return (
-    <div className="w-80 hidden lg:block bg-gray-2 h-screen p-6">
-      <h1 className="font-semibold">Details</h1>
+    <div className="w-1/3 hidden lg:block bg-gray-2 h-screen p-6">
+      <h1 className="line-clamp-1 overflow-ellipsis text-xl font-bold">
+        {garpi.title}
+      </h1>
 
-      <Label>Author</Label>
-      <div className="text-gray-11">{garpi.author}</div>
+      <div className="space-y-2 mt-4 text-sm">
+        <div>
+          <Label className="text-gray-11">Type</Label>
+          <div>{garpi.type}</div>
+        </div>
+        <div>
+          <Label className="text-gray-11">Author</Label>
+          <div>{garpi.author}</div>
+        </div>
+        <div>
+          <Label className="text-gray-11">URL</Label>
+          <div>{garpi.url}</div>
+        </div>
+        <div>
+          <Label className="text-gray-11">Created At</Label>
+          <div>{garpi.createdAt.toLocaleString()}</div>
+        </div> 
+      </div>
     </div>
   );
 };

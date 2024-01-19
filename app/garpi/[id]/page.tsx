@@ -45,14 +45,12 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
           <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
             {garpi.title}
           </h1>
-          <hr className="my-3" />
-          <div className="flex items-center justify-between">
-            {garpi.author}
 
-            <Link href={garpi.url} className="text-gray-11">
-              Open
-            </Link>
-          </div>
+          <img
+            src={garpi.image}
+            className="mt-8 h-80 w-full object-cover rounded-lg"
+            alt=""
+          />
 
           <Markdown
             remarkPlugins={[remarkGfm]}

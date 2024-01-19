@@ -45,10 +45,11 @@ export async function getMetadata(url: string) {
     if (metaTags[i].getAttribute("name") === "twitter:description") {
       twitterDescription = metaTags[i].getAttribute("content");
     }
-  } 
+  }
 
   const author =
     dom.window.document.querySelector('a[rel="author"]')?.textContent;
+ 
 
   let firstImage = images.length > 0 ? images[0].getAttribute("src") : null;
 
