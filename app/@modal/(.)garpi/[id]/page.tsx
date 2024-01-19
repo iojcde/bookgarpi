@@ -1,9 +1,9 @@
 import GarpiPage from "@/app/garpi/[id]/page";
-import GarpiModal from "./modal";
+import GarpiModal from "../../modal";
 
 const GarpiModalPage = ({ params }: { params: { id: string } }) => {
   return (
-    <GarpiModal>
+    <GarpiModal enableDesktop>
       <GarpiPage params={params} />
     </GarpiModal>
   );

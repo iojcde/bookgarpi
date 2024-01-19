@@ -31,14 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(wanted.className)}>
-        <div>
-          {children}
-          {modal}
-        </div>
+        <div>{children}</div>
         <Toaster />
       </body>
       <Analytics />
-      {/* {modal} */}
+      {modal}
     </html>
   );
 }

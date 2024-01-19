@@ -19,7 +19,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
   }
 
   return (
-    <div className="rounded-md mt-4 py-1 border-gray-3">
+    <div className="rounded-md mt-4 py-1 ">
       <div>
         <a
           target="_blank"

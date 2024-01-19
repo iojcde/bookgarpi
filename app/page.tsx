@@ -40,7 +40,7 @@ export default async function Home({
   }
 
   return (
-    <main className="min-h-screen bg-gray-1 mx-auto">
+    <main className="min-h-screen bg-gray-1 mx-auto  pb-12 ">
       <Suspense>
         {session ? (
           <MainNav initialgarpis={garpis} />
@@ -53,7 +53,7 @@ export default async function Home({
           </div>
         )}
       </Suspense>
-      <div className=" max-w-[92rem]  px-6 mx-auto mt-8">
+      <div className=" max-w-[92rem] px-6 mx-auto mt-8">
         {garpis.length > 0 ? (
           <Grid>
             {garpis.map((garpi) => {

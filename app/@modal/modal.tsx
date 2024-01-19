@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 const Loading = () => {
   return (
-    <div className="text-xl text-center justify-center flex items-center w-full h-full">
+    <div className="text-xl text-gray-11 text-center justify-center flex items-center w-full h-full">
       <div className="flex items-center gap-2">
         <Loader2 className="spin inline-block" />
         Loading...
@@ -19,7 +19,15 @@ const Loading = () => {
   );
 };
 
-const GarpiModal = ({ children }: { children: ReactNode }) => {
+const GarpiModal = ({
+  children,
+  enableDesktop,
+  fullHeight,
+}: {
+  children: ReactNode;
+  fullHeight?: boolean;
+  enableDesktop?: boolean;
+}) => {
   const { width, height } = useWindowSize();
   const router = useRouter();
   if (!width) return null;
@@ -40,18 +48,23 @@ const GarpiModal = ({ children }: { children: ReactNode }) => {
       </Drawer>
     );
   }
+  if (enableDesktop) {
+    return (
+      <Dialog defaultOpen>
+        <DialogContent
+          className={cn("overflow-hidden", fullHeight && "h-screen")}
+        >
+          <Suspense fallback={<Loading />}>
+            {" "}
+            {/* <Loading /> */}
+            {children}
+          </Suspense>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
-  return (
-    <Dialog defaultOpen>
-      <DialogContent className="overflow-hidden">
-        <Suspense fallback={<Loading />}>
-          {" "}
-          {/* <Loading /> */}
-          {children}
-        </Suspense>
-      </DialogContent>
-    </Dialog>
-  );
+  return children;
 };
 
 export default GarpiModal;
