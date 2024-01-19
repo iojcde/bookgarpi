@@ -51,7 +51,6 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
               const query = formData.get("query") as string;
               router.push(`/?q=${query}`);
             }}
-           
           >
             <div className=" transition  px-4 rounded-lg relative group mx-auto sm:w-[48rem] bg-gray-3 text-gray-11 outline-none py-1 sm:py-2 focus-within:bg-gray-5 gap-2 flex items-center">
               <Search size={16} className="text-gray-10" />
@@ -70,7 +69,7 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
                 onKeyUp={(e) => {
                   //esc
                   if (e.key === "Escape") {
-                    setInputValue(""); 
+                    setInputValue("");
                   }
                 }}
                 name="query"
@@ -109,14 +108,14 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
                     loading: "Saving...",
                     success: (data: any) => {
                       setInputValue("");
+
+                      router.refresh();
                       return `Created new Garpi: ${data?.title}`;
                     },
                     error: (err) => {
                       return `Error: ${err.message}`;
                     },
                   });
-
-                  router.refresh();
                 }}
               >
                 <DialogHeader>

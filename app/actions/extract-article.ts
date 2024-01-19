@@ -18,5 +18,7 @@ export const extractArticle = async (url: string) => {
     data.content = file.toString();
   }
 
+  
+
   return data;
 };

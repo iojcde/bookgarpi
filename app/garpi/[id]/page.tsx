@@ -11,6 +11,7 @@ import Markdown from "react-markdown";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Details } from "../../../components/details";
 import remarkGfm from "remark-gfm";
+import { BackButton } from "@/components/back-button";
 
 const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   const session = await getServerSession();
@@ -29,19 +30,18 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <div className="absolute inset-0 flex">
-      <Details />
+      <Details garpi={garpi} />
 
       <ScrollArea className="h-full w-full ">
         <div className="container mt-8 max-w-[80ch]">
-          <Link
-            href="/"
+          <BackButton
             className={cn(
               "flex items-center -ml-8",
               buttonVariants({ variant: "ghost" })
             )}
           >
             <ChevronLeft className="text-gray-11" size={20} /> Home
-          </Link>
+          </BackButton>
           <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
             {garpi.title}
           </h1>

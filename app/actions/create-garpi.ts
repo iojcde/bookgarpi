@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { getSession } from "next-auth/react";
 import { getMetadata } from "./get-metadata";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth"; 
+import { authOptions } from "@/lib/auth";
 import { extractArticle } from "./extract-article";
 import { revalidatePath } from "next/cache";
 import { summarizeArticle } from "./summarize-article";
@@ -53,11 +53,11 @@ export const createGarpi = async (url: string, type: string) => {
         data: {
           userId: session?.user.id,
           url,
-          title: metadata.title || url,
+          title: metadata.title ?? url,
           image: metadata.image,
           desc: metadata.description ?? summarized,
           content: article?.content,
-          author: article?.author,
+          author: article?.author ?? metadata.author,
           type,
         },
       });
@@ -95,8 +95,9 @@ export const createGarpi = async (url: string, type: string) => {
         data: {
           userId: session?.user.id,
           url: story.url,
-          title: story.title,
+          title: story.title ?? metadata.title,
           image: metadata.image,
+          author: article?.author ?? metadata.author,
           desc: metadata.description ?? summarized,
           content: article?.content,
           hnId: story.id,

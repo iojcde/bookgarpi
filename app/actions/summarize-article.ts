@@ -17,8 +17,6 @@ export const summarizeArticle = async (body: string) => {
   const regexForStripHTML = /(<([^>]+)>)/gi;
   const stripContent = body.replaceAll(regexForStripHTML, "");
 
-  console.log(stripContent);
-
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     stream: true,
@@ -46,6 +44,5 @@ export const summarizeArticle = async (body: string) => {
     result += value;
   }
 
-  console.log(result);
   return result;
 };
