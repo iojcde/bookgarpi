@@ -1,6 +1,6 @@
 "use client";
 import { Dialog, DialogContent } from "@/app/@modal/dialog-copy";
-
+import { cn } from "@/lib/utils"
 import GarpiPage from "@/app/garpi/[id]/page";
 import { Drawer, DrawerContent } from "@/app/@modal/drawer-copy";
 import { useWindowSize } from "@/lib/use-window-size";
