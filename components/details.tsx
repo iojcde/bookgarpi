@@ -10,10 +10,6 @@ export const Details = ({ garpi }: { garpi: Garpi }) => {
 
       <div className="space-y-2 mt-4 text-sm">
         <div>
-          <Label className="text-gray-11">Type</Label>
-          <div>{garpi.type}</div>
-        </div>
-        <div>
           <Label className="text-gray-11">Author</Label>
           <div>{garpi.author}</div>
         </div>
@@ -24,7 +20,7 @@ export const Details = ({ garpi }: { garpi: Garpi }) => {
         <div>
           <Label className="text-gray-11">Created At</Label>
           <div>{garpi.createdAt.toLocaleString()}</div>
-        </div> 
+        </div>
       </div>
     </div>
   );

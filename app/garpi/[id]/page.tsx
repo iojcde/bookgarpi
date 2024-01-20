@@ -29,8 +29,8 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="absolute inset-0 flex">
-      <Details garpi={garpi} />
+    <div className=" flex w-full">
+      {/* <Details garpi={garpi} /> */}
 
       <ScrollArea className="h-full w-full ">
         <div className="container mt-8 max-w-[80ch]">
@@ -42,7 +42,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
           >
             <ChevronLeft className="text-gray-11" size={20} /> Home
           </BackButton>
-          <h1 className="text-2xl sm:text-4xl text-balance font-bold mt-4 ">
+          <h1 className="text-2xl sm:text-3xl   w-full lg:text-4xl text-balance font-bold mt-4 ">
             {garpi.title}
           </h1>
 
@@ -54,7 +54,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
 
           <Markdown
             remarkPlugins={[remarkGfm]}
-            className="prose prose-radix lg:prose-lg mt-16 max-w-[80ch]"
+            className="prose prose-sm sm:prose-base md:prose-lg   prose-radix mt-16 max-w-[80ch]"
           >
             {garpi.content}
           </Markdown>

@@ -18,7 +18,7 @@
 
  
 *{
-  @apply border-gray-5
+  @apply border-gray-5;
 }
 
 .font-display {

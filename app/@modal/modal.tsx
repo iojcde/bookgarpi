@@ -34,8 +34,7 @@ const GarpiModal = ({
 
   if (width < 640) {
     return (
-      <Drawer
-        modal={false}
+      <Drawer 
         closeThreshold={0.1}
         open
         onClose={() => {
