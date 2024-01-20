@@ -1,12 +1,7 @@
 import { ReactNode } from "react";
 import { Nav } from "../../components/nav";
 
-const Layout = ({
-  children,
-  modal,
-}: {
-  children: ReactNode;
-}) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Nav subpage={"Hacker News"} subpageHref="/hn" />
