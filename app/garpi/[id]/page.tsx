@@ -47,7 +47,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
           </h1>
 
           <img
-            src={garpi.image}
+            src={garpi.image as string}
             className="mt-8 h-80 w-full object-cover rounded-lg"
             alt=""
           />
