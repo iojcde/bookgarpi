@@ -29,11 +29,11 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className=" flex w-full">
+    <div className=" flfex  h-full w-full">
       {/* <Details garpi={garpi} /> */}
 
-      <ScrollArea className="h-full w-full ">
-        <div className="container mt-8 max-w-[80ch]">
+      <ScrollArea className="w-full h-full">
+        <div className="container h-full mt-8 max-w-[80ch]">
           <BackButton
             className={cn(
               "flex items-center -ml-8",
