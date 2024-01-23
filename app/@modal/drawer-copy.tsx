@@ -49,7 +49,7 @@ const DrawerContent = React.forwardRef<
       {...props}
     >
       <div className=" absolute -top-1 inset-x-0 z-30 backdrop-blur-[1px] w-full flex items-center h-6  [background:linear-gradient(to_top,transparent,var(--gray1))] [mask-image:linear-gradient(to_bottom,var(--gray1)_25%,transparent)]"></div>{" "}
-      <div className="mx-auto absolute mt-4 inset-x-0 h-2 w-[100px] opacity-90 rounded-full bg-gray-3 z-30 flex-shrink-0" />
+      <div className="mx-auto absolute mt-3 inset-x-0 h-2 w-[100px] opacity-90 rounded-full bg-gray-3 z-30 flex-shrink-0" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>

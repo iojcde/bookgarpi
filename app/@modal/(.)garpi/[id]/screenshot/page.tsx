@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const ScreenshotPage = ({ params: { id } }: { params: { id: string } }) => {
   return (
-    <GarpiModal enableDesktop fullHeight>
+    <GarpiModal garpiId={id} enableDesktop fullHeight>
       <ScrollArea className="relative w-full h-full">
         <img
           alt=""
