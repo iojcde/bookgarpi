@@ -1,16 +1,6 @@
 const million = require('million/compiler');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => ({
-    ...config, 
-    resolve: {
-      ...config.resolve,
-      alias: {
-        ...config.resolve?.alias,
-        canvas$: false, 
-      },
-    },
-  }),
   experimental: {
       serverComponentsExternalPackages: ['puppeteer-core',],
   },

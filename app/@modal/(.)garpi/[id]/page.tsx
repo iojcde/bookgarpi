@@ -3,7 +3,7 @@ import GarpiModal from "../../modal";
 
 const GarpiModalPage = ({ params }: { params: { id: string } }) => {
   return (
-    <GarpiModal enableDesktop>
+    <GarpiModal garpiId={params.id} enableDesktop>
       <GarpiPage params={params} />
     </GarpiModal>
   );

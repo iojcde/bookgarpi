@@ -1,6 +1,6 @@
 "use client";
 import { Dialog, DialogContent } from "@/app/@modal/dialog-copy";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 import GarpiPage from "@/app/garpi/[id]/page";
 import { Drawer, DrawerContent } from "@/app/@modal/drawer-copy";
 import { useWindowSize } from "@/lib/use-window-size";
@@ -8,6 +8,7 @@ import { ReactNode, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import { Sidebar } from "@/components/sidebar";
 const Loading = () => {
   return (
     <div className="text-xl text-gray-11 text-center justify-center flex items-center w-full h-full">
@@ -23,10 +24,12 @@ const GarpiModal = ({
   children,
   enableDesktop,
   fullHeight,
+  garpiId,
 }: {
   children: ReactNode;
   fullHeight?: boolean;
   enableDesktop?: boolean;
+  garpiId?: string;
 }) => {
   const { width, height } = useWindowSize();
   const router = useRouter();
@@ -34,7 +37,7 @@ const GarpiModal = ({
 
   if (width < 640) {
     return (
-      <Drawer 
+      <Drawer
         closeThreshold={0.1}
         open
         onClose={() => {
@@ -43,6 +46,8 @@ const GarpiModal = ({
         }}
       >
         <DrawerContent className="h-full">
+          <Sidebar id={garpiId as string} />
+
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </DrawerContent>
       </Drawer>
@@ -54,6 +59,7 @@ const GarpiModal = ({
         <DialogContent
           className={cn("overflow-hidden", fullHeight && "h-screen")}
         >
+          <Sidebar id={garpiId as string} />
           <Suspense fallback={<Loading />}>
             {" "}
             {/* <Loading /> */}

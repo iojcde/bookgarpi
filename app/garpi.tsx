@@ -23,13 +23,14 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
         />
       ) : (
         <Image
-          alt=""  
+          alt=""
           width={300}
           height={160}
           src={`https://f000.backblazeb2.com/file/garpi-s3/${garpi.id}.png`}
           className={cn("w-full  object-cover h-40 transition-all object-top")}
         />
       )}
+
       <Link
         href={`/garpi/${garpi.id}`}
         className="block p-4 border-t pt-3 cursor-pointer h-full transition"

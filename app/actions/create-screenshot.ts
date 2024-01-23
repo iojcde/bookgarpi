@@ -64,8 +64,9 @@ export const createScreenshot = async (url: string, garpiID: string) => {
           Bucket: "garpi-s3",
           Key: garpiID + ".png",
           Body: res.body,
+          ContentType: "image/png",
         },
- 
+
         leavePartsOnError: false, // optional manually handle dropped parts
       });
 

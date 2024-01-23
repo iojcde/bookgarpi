@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { usePathname, useRouter } from "next/navigation";
-import { Sidebar } from "@/components/sidebar";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -52,7 +51,6 @@ const DialogContent = React.forwardRef<
         )}
         {...props}
       >
-        <Sidebar />
         {children}
       </DialogPrimitive.Content>
     </DialogPortal>
