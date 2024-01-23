@@ -11,7 +11,7 @@ const ScreenshotPage = ({ params: { id } }: { params: { id: string } }) => {
           alt=""
           src={`https://f000.backblazeb2.com/file/garpi-s3/${id}.png`}
           className={cn(
-            "w-full  object-cover h-full transition-all object-top"
+            "w-full max-w-5xl mx-auto  object-cover h-full transition-all object-top"
           )}
         />
       </ScrollArea>
