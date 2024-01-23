@@ -10,11 +10,11 @@ import Link from "next/link";
 
 export const Sidebar = ({ id }: { id: string }) => {
   return (
-    <aside className="absolute inset-x-0 text-gray-10 z-30 top-0">
-      <div className="sm:h-full  py-2 sm:relative sm:p-6 px-3 items-center justify-between sm:flex-col flex-row flex border-r w-18">
+    <aside className="absolute sm:relative inset-x-0 text-gray-10 z-30 top-0">
+      <div className="sm:h-full  py-2 sm:relative sm:py-6 px-3 items-center justify-between sm:flex-col flex-row flex border-r w-18">
         <DialogTrigger
           className={cn(
-            "hidden rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-foreground"
+            "hidden sm:block rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-foreground"
           )}
         >
           <X className="h-6 w-6" />
