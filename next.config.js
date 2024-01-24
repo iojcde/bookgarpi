@@ -7,7 +7,7 @@ const nextConfig = {
   images:{
     remotePatterns:[
       {
-        hostname:'f000.backblazeb2.com'
+        hostname:'garpi-s3.s3.us-west-000.backblazeb2.com'
       }
     ]
   }

@@ -26,7 +26,7 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
           alt=""
           width={300}
           height={160}
-          src={`https://f000.backblazeb2.com/file/garpi-s3/${garpi.id}.png`}
+          src={`https://garpi-s3.s3.us-west-000.backblazeb2.com/${garpi.id}.png`}
           className={cn("w-full  object-cover h-40 transition-all object-top")}
         />
       )}
