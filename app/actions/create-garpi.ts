@@ -49,7 +49,7 @@ export const createGarpi = async (url: string, type: string) => {
           console.error(e);
         }
       }
- 
+
       const newGarpi = await db.garpi.create({
         data: {
           userId: session?.user.id,
@@ -85,7 +85,7 @@ export const createGarpi = async (url: string, type: string) => {
       if (!metadata.description) {
         try {
           summarized = await summarizeArticle(
-            article?.content|| (await fetch(url).then((res) => res.text()))
+            article?.content || (await fetch(url).then((res) => res.text()))
           );
         } catch (e) {
           console.error(e);
@@ -106,7 +106,7 @@ export const createGarpi = async (url: string, type: string) => {
         },
       });
 
-      await createScreenshot(url, newGarpi.id);
+      await createScreenshot(story.url, newGarpi.id);
 
       return newGarpi;
     }

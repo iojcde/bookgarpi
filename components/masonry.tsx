@@ -37,9 +37,9 @@ const Masonry: React.FC<MasonryProps> = ({
     for (let breakpoint in breakpointColsObject) {
       const optBreakpoint = parseInt(breakpoint);
       const isCurrentBreakpoint =
-        optBreakpoint > 0 && windowWidth <= optBreakpoint;
+        optBreakpoint > 0 && windowWidth >= optBreakpoint;
 
-      if (isCurrentBreakpoint && optBreakpoint < matchedBreakpoint) {
+      if (isCurrentBreakpoint) {
         matchedBreakpoint = optBreakpoint;
         columns = breakpointColsObject[breakpoint];
       }
@@ -107,7 +107,7 @@ const Masonry: React.FC<MasonryProps> = ({
         ...columnAttrs?.style,
         // width: columnWidth,
       },
-      className: classNameOutput,
+      className: classNameOutput + " " + columnCount,
     };
 
     return childrenInColumns.map((items, i) => {

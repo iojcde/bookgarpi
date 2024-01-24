@@ -12,7 +12,7 @@ import Link from "next/link";
 import { LinkIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Bookmarker = ({ initialgarpis }: { initialgarpis: any[] }) => {
+export const Bookmarker = () => {
   const [inputValue, setInputValue] = useState("");
   const router = useRouter();
 

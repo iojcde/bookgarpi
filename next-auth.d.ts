@@ -16,3 +16,7 @@ declare module "next-auth" {
     };
   }
 }
+
+export interface ProcessEnv {
+  [key: string]: string | undefined;
+}

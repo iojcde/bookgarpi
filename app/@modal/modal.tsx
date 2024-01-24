@@ -4,12 +4,30 @@ import { cn } from "@/lib/utils";
 import GarpiPage from "@/app/garpi/[id]/page";
 import { Drawer, DrawerContent } from "@/app/@modal/drawer-copy";
 import { useWindowSize } from "@/lib/use-window-size";
-import { ReactNode, Suspense, useState } from "react";
+import {
+  ReactNode,
+  Suspense,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Sidebar } from "@/components/sidebar";
-import { ScrollArea } from "@/components/ui/scroll-area";
+const modalContext = createContext(true); // placeholder
+
+export const isInModal = () => {
+  const context = useContext(modalContext);
+
+  if (context === undefined) {
+    return true;
+  }
+};
+
+const ModalProvider = ({ children }: { children: ReactNode }) => {
+  return <modalContext.Provider value={true}>{children}</modalContext.Provider>;
+};
+
 const Loading = () => {
   return (
     <div className="text-xl text-gray-11 text-center justify-center flex items-center w-full h-full">
@@ -25,14 +43,11 @@ const GarpiModal = ({
   children,
   enableDesktop,
   fullHeight,
-  garpiId,
 }: {
   children: ReactNode;
   fullHeight?: boolean;
   enableDesktop?: boolean;
-  garpiId?: string;
 }) => {
-  const [tab, setTab] = useState<"screenshot" | "article">("article");
   const { width, height } = useWindowSize();
   const router = useRouter();
   if (!width) return null;
@@ -47,60 +62,24 @@ const GarpiModal = ({
           setTimeout(() => router.back(), 200);
         }}
       >
-        <DrawerContent className="h-full">
-          <Sidebar setTab={setTab} tab={tab} id={garpiId as string} />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-          <div
-            className={cn(
-              tab == "screenshot" ? "max-w-full" : "max-w-0",
-              "transition-all"
-            )}
-          >
-            <img
-              alt=""
-              src={`https://f000.backblazeb2.com/file/garpi-s3/${garpiId}.png`}
-              className={cn(
-                "w-full max-w-5xl mx-auto  object-cover h-full transition-all object-top"
-              )}
-            />
-          </div>{" "}
-        </DrawerContent>
+        <ModalProvider>
+          <DrawerContent className="h-full">
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </DrawerContent>
+        </ModalProvider>
       </Drawer>
     );
   }
   if (enableDesktop) {
     return (
       <Dialog defaultOpen>
-        <DialogContent
-          className={cn("overflow-hidden", fullHeight && "h-screen")}
-        >
-          <Sidebar setTab={setTab} tab={tab} id={garpiId as string} />
-          <div
-            className={cn(
-              tab == "screenshot" ? "translate-x-0" : "-translate-x-full",
-              "transition-all absolute z-30 w-full  h-full"
-            )}
+        <ModalProvider>
+          <DialogContent
+            className={cn("overflow-hidden", fullHeight && "h-screen")}
           >
-            {" "}
-            <ScrollArea className="h-full">
-              <img
-                alt=""
-                className="mx-auto object-cover h-full"
-                src={`https://garpi-s3.s3.us-west-000.backblazeb2.com/${garpiId}.png`}
-              />
-            </ScrollArea>
-          </div>
-          <Suspense fallback={<Loading />}>
-            <div
-              className={cn(
-                tab == "article" ? "translate-x-0" : "translate-x-full",
-                "transition-all w-full  duration-200 h-full"
-              )}
-            >
-              {children}
-            </div>
-          </Suspense>
-        </DialogContent>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </DialogContent>
+        </ModalProvider>
       </Dialog>
     );
   }

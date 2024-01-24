@@ -1,7 +1,12 @@
 import { JSDOM } from "jsdom";
 
 export async function getMetadata(url: string) {
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "user-agent": "curl/8.5.0",
+    },
+  });
+
   const html = await response.text();
   const dom = new JSDOM(html);
   const metaTags = dom.window.document.getElementsByTagName("meta");
@@ -49,7 +54,6 @@ export async function getMetadata(url: string) {
 
   const author =
     dom.window.document.querySelector('a[rel="author"]')?.textContent;
- 
 
   let firstImage = images.length > 0 ? images[0].getAttribute("src") : null;
 

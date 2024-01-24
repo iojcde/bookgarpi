@@ -12,13 +12,20 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Details } from "../../../components/details";
 import remarkGfm from "remark-gfm";
 import { BackButton } from "@/components/back-button";
+import Wrapper from "./wrapper";
 
-const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
+const GarpiPage = async ({
+  params: { id },
+  ...props
+}: {
+  params: { id: string };
+}) => {
   const session = await getServerSession();
 
   if (!session) {
     return null;
   }
+  console.log(props);
 
   const garpi = await db.garpi.findFirst({
     where: { id, userId: session.user.id },
@@ -29,7 +36,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
   }
 
   return (
-    <div className=" flfex  h-full w-full">
+    <Wrapper garpi={garpi}>
       {/* <Details garpi={garpi} /> */}
 
       <ScrollArea className="w-full h-full">
@@ -64,7 +71,7 @@ const GarpiPage = async ({ params: { id } }: { params: { id: string } }) => {
           ) : null}
         </div>
       </ScrollArea>
-    </div>
+    </Wrapper>
   );
 };
 

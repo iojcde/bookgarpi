@@ -3,7 +3,7 @@ import { Label } from "./ui/label";
 
 export const Details = ({ garpi }: { garpi: Garpi }) => {
   return (
-    <div className="w-1/3 hidden lg:block bg-gray-2 h-screen p-6">
+    <div className="w-full hidden relative lg:block bg-gray-2 h-screen p-6">
       <h1 className="line-clamp-1 overflow-ellipsis text-xl font-bold">
         {garpi.title}
       </h1>
