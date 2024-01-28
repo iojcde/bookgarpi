@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 
 const modalContext = createContext(false); // placeholder
 
-export const isInModal = () => {
+export const useInModal = () => {
   const context = useContext(modalContext);
 
   return context;

@@ -1,6 +1,6 @@
 "use client";
 import { DialogTrigger } from "@/app/@modal/dialog-copy";
-import { isInModal } from "@/app/@modal/modal";
+import { useInModal } from "@/app/@modal/modal";
 import { cn } from "@/lib/utils";
 import {
   Image as ImageIcon,
@@ -25,7 +25,7 @@ export const Sidebar = ({
     setDetailsOpen: (a: boolean) => void;
   };
 }) => {
-  const modal = isInModal();
+  const modal = useInModal();
   return (
     <aside className="absolute sm:relative inset-x-0 text-gray-10 bg-background z-50 top-0">
       <div className="sm:h-full  py-2 sm:relative sm:py-6 px-3 items-center justify-between sm:flex-col flex-row flex border-r w-18">
