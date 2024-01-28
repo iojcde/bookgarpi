@@ -1,3 +1,4 @@
+"use client";
 import { DialogTrigger } from "@/app/@modal/dialog-copy";
 import { isInModal } from "@/app/@modal/modal";
 import { cn } from "@/lib/utils";

@@ -44,7 +44,7 @@ const StoryPage = async ({ params: { id } }: { params: { id: number } }) => {
 
       {story.text && (
         <div
-          className="my-4 prose-sm prose"
+          className="my-4 prose-sm prose prose-radix"
           dangerouslySetInnerHTML={{ __html: story.text }}
         />
       )}

@@ -14,18 +14,18 @@ import {
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const modalContext = createContext(true); // placeholder
+const modalContext = createContext(false); // placeholder
 
 export const isInModal = () => {
   const context = useContext(modalContext);
 
-  if (context === undefined) {
-    return true;
-  }
+  return context;
 };
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
-  return <modalContext.Provider value={true}>{children}</modalContext.Provider>;
+  return (
+    <modalContext.Provider value={false}>{children}</modalContext.Provider>
+  );
 };
 
 const Loading = () => {

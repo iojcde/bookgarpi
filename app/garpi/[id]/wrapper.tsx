@@ -12,7 +12,6 @@ const Wrapper = ({
 }: {
   children: ReactNode;
   garpi: Garpi;
-  modal: boolean;
 }) => {
   const [tab, setTab] = useState<"screenshot" | "article">("article");
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -27,13 +26,14 @@ const Wrapper = ({
         <div
           className={cn(
             detailsOpen
-              ? " max-w-full translate-x-0"
-              : " max-w-0 -translate-x-full",
-            "transition-all absolute overflow-hidden w-1/3 z-30"
+              ? " max-w-[33%]"
+              : " max-w-0",
+            "transition-all overflow-hidden w-full shadow-lg  z-30"
           )}
         >
           <Details garpi={garpi} />
         </div>
+
         <div
           className={cn(
             tab == "screenshot" ? "translate-x-0" : "-translate-x-full",
@@ -48,6 +48,7 @@ const Wrapper = ({
               src={`https://garpi-s3.s3.us-west-000.backblazeb2.com/${garpi.id}.png`}
             />
           </ScrollArea>
+          d
         </div>
 
         <div className="h-full w-full"> {children}</div>

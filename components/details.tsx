@@ -1,5 +1,6 @@
 import { Garpi } from "@prisma/client";
 import { Label } from "./ui/label";
+import TagMaker from "./tag/tag-maker";
 
 export const Details = ({ garpi }: { garpi: Garpi }) => {
   return (
@@ -8,7 +9,7 @@ export const Details = ({ garpi }: { garpi: Garpi }) => {
         {garpi.title}
       </h1>
 
-      <div className="space-y-2 mt-4 text-sm">
+      <div className="space-y-2 mt-16 text-sm">
         <div>
           <Label className="text-gray-11">Author</Label>
           <div>{garpi.author}</div>
@@ -20,6 +21,10 @@ export const Details = ({ garpi }: { garpi: Garpi }) => {
         <div>
           <Label className="text-gray-11">Created At</Label>
           <div>{garpi.createdAt.toLocaleString()}</div>
+        </div>
+
+        <div>
+          <TagMaker />
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import { GarpiTweet } from "./garpi-tweet";
 
 import { TweetSkeleton } from "react-tweet";
 import { Grid } from "./grid";
-import TagInputDemo from "@/components/tag/tag-input-demo";
+import TagInputDemo from "@/components/tag/tag-maker";
 import { searchGarpi } from "./actions/search";
 
 export default async function Home({
