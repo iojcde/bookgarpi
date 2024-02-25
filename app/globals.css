@@ -6,8 +6,8 @@
    
   font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 
-  --radius: 0.75rem;
-
+  --radius: 0.5rem;
+ 
 }
 
  .react-tweet-theme {
@@ -22,7 +22,7 @@
 }
 
 .font-display {
-  font-feature-settings: "opsz" 32;
+  font-variation-settings: "opsz" 32;
 }
 
 
@@ -32,7 +32,7 @@
 
 body{
   
-  @apply bg-gray-1 text-gray-12  ; 
+  @apply dark:bg-black text-gray-12  ; 
 }
 
   

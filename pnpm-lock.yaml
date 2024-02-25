@@ -110,6 +110,9 @@ dependencies:
   jsdom:
     specifier: ^23.0.1
     version: 23.0.1(canvas@2.11.2)
+  linkedom:
+    specifier: ^0.16.8
+    version: 0.16.8
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -123,7 +126,7 @@ dependencies:
     specifier: ^2.6.4
     version: 2.6.4
   next:
-    specifier: 14.1.0
+    specifier: ^14.1.0
     version: 14.1.0(@babel/core@7.23.7)(react-dom@18.0.0)(react@18.0.0)
   next-auth:
     specifier: ^4.24.5
@@ -1094,7 +1097,7 @@ packages:
       '@mozilla/readability': 0.4.4
       bellajs: 11.1.2
       cross-fetch: 4.0.0
-      linkedom: 0.16.5
+      linkedom: 0.16.8
       sanitize-html: 2.11.0
     transitivePeerDependencies:
       - encoding
@@ -3681,8 +3684,8 @@ packages:
   /caniuse-lite@1.0.30001571:
     resolution: {integrity: sha512-tYq/6MoXhdezDLFZuCO/TKboTzuQ/xR5cFdgXPfDtM7/kchBO3b4VWghE/OAi/DV7tTdhmLjZiZBZi1fA/GheQ==}
 
-  /caniuse-lite@1.0.30001579:
-    resolution: {integrity: sha512-u5AUVkixruKHJjw/pj9wISlcMpgFWzSrczLZbrqBSxukQixmg0SJ5sZTpvaFvxU0HoQKd4yoyAogyrAz9pzJnA==}
+  /caniuse-lite@1.0.30001589:
+    resolution: {integrity: sha512-vNQWS6kI+q6sBlHbh71IIeC+sRwK2N3EDySc/updIGhIee2x5z00J4c1242/5/d6EpEMdOnk/m+6tuk4/tcsqg==}
     dev: false
 
   /canvas@2.11.2:
@@ -5646,8 +5649,8 @@ packages:
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  /linkedom@0.16.5:
-    resolution: {integrity: sha512-FtcuLuxDtlKWWilm5Z0HgmrfMwO0tOfC6tu47fRXj2/KGEeDSh4ihiDwFKZSbJj6zh520r8XZjZ7v2Jb30HAQA==}
+  /linkedom@0.16.8:
+    resolution: {integrity: sha512-+HtHVHBb3yZKlP9pgcJdi1AIG9tsAuo+Qtlz+79cCTsxgQwDzajsZjYvpp+DEckCK/zoGVhzkADniYZQ57KcFQ==}
     dependencies:
       css-select: 5.1.0
       cssom: 0.5.0
@@ -6353,7 +6356,7 @@ packages:
       '@next/env': 14.1.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001579
+      caniuse-lite: 1.0.30001589
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.0.0

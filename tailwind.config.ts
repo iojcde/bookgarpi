@@ -51,7 +51,7 @@ const config: Config = {
         },
         accent: {
           // DEFAULT: `${alias("gray", 3)}/80`,
-          DEFAULT: "rgb(var(--gray2) / 0.8)",
+          DEFAULT: "rgb(var(intgray2) / 0.8)",
           foreground: alias("gray", 12),
         },
         popover: {

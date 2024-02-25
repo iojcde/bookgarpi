@@ -8,7 +8,7 @@ export const Nav = ({
   subpageHref?: string;
 }) => (
   <nav className="container py-2 border-b">
-    <Link href="/" className="font-bold text-lg">
+    <Link href="/" className="font-bold  font-display text-lg">
       Garpi{" "}
     </Link>{" "}
     {subpage && subpageHref && (

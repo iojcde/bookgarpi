@@ -14,7 +14,7 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="item  border border-gray-5 items-start rounded-xl hover:shadow transition bg-white dark:bg-gray-2 w-full h-[280px] relative overflow-hidden group">
+    <div className="item items-start rounded-xl shadow hover:shadow-lg transition  dark:bg-gray-2 w-full h-[280px] relative overflow-hidden group">
       {garpi.image ? (
         <img
           alt=""
@@ -35,7 +35,7 @@ export const Bookmark = ({ garpi }: { garpi: Garpi }) => {
         href={`/garpi/${garpi.id}`}
         className="block p-4 border-t pt-3 cursor-pointer h-full transition"
       >
-        <h3 className="leading-6 font-bold  line-clamp-1 max-w-full">
+        <h3 className="leading-6 font-semibold font-display line-clamp-1 max-w-full">
           {garpi.title}
         </h3>{" "}
         <div className="text-gray-11 mt-2 text-xs line-clamp-2">

@@ -22,7 +22,7 @@ export const Story = async ({
         <a
           target="_blank"
           href={story.url || `/hn/stories/${story.id}`}
-          className="font-medium"
+          className="font-medium font-display"
         >
           {story.title}
           {` `}
@@ -32,7 +32,7 @@ export const Story = async ({
         </a>
       </div>
 
-      <div className="flex gap-1 text-gray-11 text-sm items-center">
+      <div className="flex gap-1 text-gray-11 text-xs items-center">
         <span>
           {story.score} points by {story?.by}
         </span>
@@ -41,4 +41,3 @@ export const Story = async ({
     </li>
   );
 };
-

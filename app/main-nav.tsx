@@ -34,8 +34,8 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
 
   return (
     <>
-      <nav className="w-full flex  flex-wrap gap-2 items-center sticky px-8 backdrop-blur-sm z-30 top-0 inset-x-0 py-4 ">
-        <Link href="/" className="text-lg font-bold whitespace-nowrap">
+      <nav className="w-full flex shadow-sm flex-wrap gap-2 border-b items-center sticky px-6 bg-gray-1 z-30 top-0 inset-x-0 py-2 ">
+        <Link href="/" className=" font-display font-bold whitespace-nowrap">
           Garpi <span className="text-gray-10 font-medium"> / Bookmarks</span>
         </Link>
 
@@ -45,19 +45,18 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
         >
           HN Reader
         </Link>
-        <div className="mx-auto flex gap-2 relative">
+        <div className="mx-auto flex items-center gap-2 relative">
           <form
             action={async (formData) => {
               const query = formData.get("query") as string;
               router.push(`/?q=${query}`);
             }}
           >
-            <div className=" transition  px-4 rounded-lg relative group mx-auto sm:w-[48rem] bg-gray-3 text-gray-11 outline-none py-1 sm:py-2 focus-within:bg-gray-5 gap-2 flex items-center">
+            <div className=" transition  px-4 rounded-sm text-sm  relative group mx-auto sm:w-[30rem] bg-gray-3 text-gray-11 outline-none py-1 focus-within:bg-gray-5 gap-2 flex items-center">
               <Search size={16} className="text-gray-10" />
-              <span className="mx-2 group-hover:opacity-100 opacity-0 transition-all h-[80%] border-r border-gray-8 w-0"></span>
               <input
                 autoComplete="off"
-                placeholder="Search anything..."
+                placeholder="Search..."
                 value={inputValue}
                 onChange={(e) => {
                   setInputValue(e.target.value);
@@ -73,7 +72,7 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
                   }
                 }}
                 name="query"
-                className="bg-transparent  peer outline-none w-full"
+                className="bg-transparent py-1 placeholder:text-gray-10  peer outline-none w-full"
               ></input>{" "}
               <div
                 className={cn(
@@ -88,7 +87,10 @@ export const MainNav = ({ initialgarpis }: { initialgarpis: any[] }) => {
 
           <Dialog>
             <DialogTrigger
-              className={cn("shadow rounded-md", buttonVariants())}
+              className={cn(
+                "shadow rounded-md ",
+                buttonVariants({ size: "sm" })
+              )}
             >
               + New
             </DialogTrigger>

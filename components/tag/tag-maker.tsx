@@ -47,7 +47,7 @@ export default function TagMaker() {
   }
 
   return (
-    <div className="w-full relative my-4 flex flex-col space-y-2">
+    <div className="w-full relative my-4 flex flex-col space-y-1">
       <div className="preview flex min-h-[350px] w-full  mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
         <Form {...form}>
           <form
@@ -65,7 +65,7 @@ export default function TagMaker() {
                       shape={"pill"}
                       size={"sm"}
                       {...field}
-                      placeholder="Enter a topic"
+                      placeholder="New Tag"
                       tags={tags}
                       setTags={(newTags) => {
                         setTags(newTags);

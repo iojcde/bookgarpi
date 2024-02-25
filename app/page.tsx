@@ -40,12 +40,20 @@ export default async function Home({
   }
 
   return (
-    <main className="min-h-screen bg-gray-1 mx-auto  pb-12 ">
+    <main className="min-h-screen dark:bg-black mx-auto  pb-12 ">
       <Suspense>
         {session ? (
-          <MainNav initialgarpis={garpis} />
+          <>
+            <MainNav initialgarpis={garpis} />
+            <div className="flex items-center py-8 gap-2  px-6 sm:px-8 text-sm font-medium ">
+              <button className="bg-gray-3 rounded-sm px-4 py-1.5 ">
+                Bookmarks
+              </button>{" "}
+              <button className="text-gray-11 px-4 py-1.5 ">Notes</button>
+            </div>
+          </>
         ) : (
-          <div>
+          <div className="h-full flex items-center flex-col gap-8">
             로그인이 필요합니다.
             <Link href={"/login"} className={buttonVariants()}>
               로그인
@@ -53,7 +61,7 @@ export default async function Home({
           </div>
         )}
       </Suspense>
-      <div className=" max-w-[92rem] px-6 mx-auto mt-8">
+      <div className=" sm:px-8 px-6 mx-auto ">
         {garpis.length > 0 ? (
           <Grid>
             {garpis.map((garpi) => {

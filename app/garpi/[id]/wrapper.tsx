@@ -1,4 +1,5 @@
 "use client";
+import { AnimationWrapper } from "@/components/animation-wrapper";
 import { Details } from "@/components/details";
 import { Sidebar } from "@/components/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -16,42 +17,59 @@ const Wrapper = ({
   const [tab, setTab] = useState<"screenshot" | "article">("article");
   const [detailsOpen, setDetailsOpen] = useState(false);
   return (
-    <div className="flex w-full">
+    <div className="flex w-full ">
       <Sidebar
         data={{ detailsOpen, tab }}
         fns={{ setDetailsOpen, setTab }}
         id={garpi.id as string}
       />
-      <div className="w-full relative flex">
+      <div className="w-full relative flex gap-2">
         <div
           className={cn(
-            detailsOpen
-              ? " max-w-[33%]"
-              : " max-w-0",
-            "transition-all overflow-hidden w-full shadow-lg  z-30"
+            detailsOpen ? " sm:max-w-[20%]" : " sm:max-w-0",
+            "transition-all overflow-hidden relative w-full shadow-lg  z-30"
           )}
         >
-          <Details garpi={garpi} />
+          <Details
+            className={cn(
+              !detailsOpen && "-translate-x-full opacity-0",
+              "transition-all"
+            )}
+            garpi={garpi}
+          />
         </div>
 
         <div
           className={cn(
-            tab == "screenshot" ? "translate-x-0" : "-translate-x-full",
-            "transition-all absolute z-30 w-full   h-full"
+            "h-full w-full relative transition-all",
+            detailsOpen && "p-2 "
           )}
         >
-          {" "}
-          <ScrollArea className="h-full">
-            <img
-              alt=""
-              className="mx-auto object-cover h-full w-full"
-              src={`https://garpi-s3.s3.us-west-000.backblazeb2.com/${garpi.id}.png`}
-            />
-          </ScrollArea>
-          d
+          <div
+            className={cn(
+              detailsOpen && "border rounded-sm overflow-hidden h-full"
+            )}
+          >
+            <AnimationWrapper
+              show={tab == "article"}
+              className="h-full transition-all"
+            >
+              {children}
+            </AnimationWrapper>
+            <AnimationWrapper
+              show={tab == "screenshot"}
+              className="transition-all"
+            >
+              <ScrollArea className="h-full">
+                <img
+                  alt=""
+                  className="mx-auto object-cover h-full w-full"
+                  src={`https://garpi-s3.s3.us-west-000.backblazeb2.com/${garpi.id}.png`}
+                />
+              </ScrollArea>
+            </AnimationWrapper>
+          </div>
         </div>
-
-        <div className="h-full w-full"> {children}</div>
       </div>
     </div>
   );

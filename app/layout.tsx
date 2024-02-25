@@ -6,14 +6,10 @@ import { Nav } from "../components/nav";
 import { Analytics } from "@vercel/analytics/react";
 import { cn } from "@/lib/utils";
 
-const wanted = localfont({
-  src: [
-    {
-      path: "../fonts/WantedSansVariable.woff2",
-    },
-  ],
+const inter = localfont({
+  src: "../fonts/InterVariable.woff2",
   display: "swap",
-  variable: "--font-sans",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(wanted.className)}>
+      <body className={cn(inter.className)}>
         <div>{children}</div>
         <Toaster />
       </body>
